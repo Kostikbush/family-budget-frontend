@@ -4,18 +4,20 @@
   @include bgPage();
 }
 .form-change-enter {
-  opacity: 0;
+  transform: translateX(700px);
+  opacity: 0.4;
 }
 .form-change-enter-active {
   opacity: 1;
-  transition: opacity 200ms;
+  transition: transform 200ms;
 }
 .form-change-exit {
   opacity: 1;
 }
 .form-change-exit-active {
-  opacity: 0;
-  transition: opacity 200ms;
+  transform: translateX(700px);
+  opacity: 0.4;
+  transition: transform 400ms;
 }
 .login-page__forms {
   height: 100vh;

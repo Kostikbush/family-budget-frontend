@@ -3,8 +3,9 @@
 .input-wrapper__input-from {
   background-color: transparent;
   transition: 0.4s all;
-  width: 170px;
-  height: 30px;
+  width: 250px;
+  height: 50px;
+  font-size: 18px;
   padding: 5px;
   @include borderEl();
   @include shadowEl();
@@ -29,8 +30,8 @@
 }
 .input-wrapper {
   position: relative;
-  width: 165px;
-  height: 30px;
+  width: 243px;
+  height: 50px;
 }
 
 .input-wrapper:hover .input-wrapper__btn__stroke {
@@ -110,4 +111,10 @@
     height: 4%;
     width: 0%;
   }
+}
+.input-wrapper__icon {
+  position: absolute;
+  top: 35%;
+  right: 0;
+  color: white;
 }

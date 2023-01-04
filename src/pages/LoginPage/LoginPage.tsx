@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { CSSTransition } from "react-transition-group";
 //useMemo, useRef,
 import { Form } from "../../Components/Form/From";
 
@@ -10,7 +9,7 @@ export const LoginPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [vieEnterForm, setVieEnterForm] = useState(true);
+
   //const data = useAppSelectore((state) => state.userAftorasationSlice);
   //const dispath = useAppDispatch();
   const handleEnter = () => {};
@@ -21,35 +20,16 @@ export const LoginPage = () => {
       <main className="login-page">
         <section className="container">
           <div className="login-page__forms">
-            <CSSTransition
-              timeout={500}
-              classNames="form-change"
-              in={vieEnterForm}
-              unmountOnExit
-            >
-              <Form
-                handleRegistartion={handleRegistration}
-                handleEnter={handleEnter}
-                vieEnterForm={vieEnterForm}
-                setOnClickChangeForm={setVieEnterForm}
-                setPassword={setPassword}
-                setName={setName}
-                setEmail={setEmail}
-                name={name}
-                email={email}
-                password={password}
-                type="enter"
-              />
-            </CSSTransition>
-
-            {/* <CSSTransition
-              timeout={500}
-              classNames="form-change"
-              in={!vieEnterForm}
-              unmountOnExit
-            >
-              <Form type="exit" />
-            </CSSTransition> */}
+            <Form
+              handleRegistartion={handleRegistration}
+              handleEnter={handleEnter}
+              setPassword={setPassword}
+              setName={setName}
+              setEmail={setEmail}
+              name={name}
+              email={email}
+              password={password}
+            />
           </div>
         </section>
       </main>
