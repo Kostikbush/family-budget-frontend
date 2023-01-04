@@ -24,6 +24,7 @@ export const userAftorasationSlice = createSlice({
       let data = getDataFromIndexDB();
       if (!data) {
         return;
+        // eslint-disable-next-line valid-typeof
       } else if (typeof data.email !== null) {
         state.name = data.name;
         state.email = data.email;
