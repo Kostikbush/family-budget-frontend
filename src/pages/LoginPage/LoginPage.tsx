@@ -1,5 +1,4 @@
 import { useMemo, useRef, useState } from "react";
-import { BsArrowRight } from "react-icons/bs";
 import { CSSTransition } from "react-transition-group";
 
 import { Btn } from "../../Components/Btn/Btn";
@@ -13,8 +12,8 @@ export const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [vieEnterForm, setVieEnterForm] = useState(true);
-  const data = useAppSelectore((state) => state.userAftorasationSlice);
-  const dispath = useAppDispatch();
+  //const data = useAppSelectore((state) => state.userAftorasationSlice);
+  //const dispath = useAppDispatch();
   const handleEnter = () => {};
   const handleRegistration = () => {};
   return (
