@@ -1,0 +1,39 @@
+@import "../../Common-Style/mixins.scss";
+.form-container {
+  height: 50%;
+  background: linear-gradient(
+    -45deg,
+    #942be549,
+    #f5308c49,
+    #d42cee49,
+    #c92df849
+  );
+  @include borderEl();
+  @include shadowEl();
+  padding: 15px;
+}
+.form-container__enter {
+  color: white;
+  letter-spacing: 2px;
+  font-size: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  & h2 {
+    padding: 0 0 5px 0;
+    border-bottom: 2px solid white;
+  }
+}
+.enter__btns {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.enter__inputs {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

@@ -1,4 +1,12 @@
+@font-face {
+  font-family: "Vinnytsia"; /* Имя шрифта */
+  src: url("./assets/fonts/VinnytsiaSansReg.ttf"); /* Путь к файлу со шрифтом */
+  font-style: normal;
+  font-weight: normal;
+}
 * {
+  font-family: "Vinnytsia";
+  font-size: 10px;
   padding: 0;
   margin: 0;
   border: 0;
@@ -6,6 +14,7 @@
 *,
 *:before,
 *:after {
+  font-family: "Vinnytsia";
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -16,6 +25,7 @@
 }
 a:focus,
 a:active {
+  font-family: "Vinnytsia";
   display: block;
 }
 
@@ -29,12 +39,13 @@ body {
   -ms-text-size-adjust: 100;
   -moz-text-size-adjust: 100;
   -webkit-text-size-adjust: 100;
+  font-family: "Vinnytsia";
 }
 
 input,
 button,
 textarea {
-  font-family: inherit;
+  font-family: "Vinnytsia";
 }
 
 input::-ms-clear {
@@ -49,6 +60,7 @@ button::-moz-focus-inner {
 }
 a,
 a:visited {
+  font-family: "Vinnytsia";
   text-decoration: none;
 }
 ul ol {

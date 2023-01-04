@@ -8,7 +8,6 @@ interface UserState {
   isLoading: boolean;
   error: string;
 }
-
 const initialState: UserState = {
   name: "Пользователь",
   email: null,
@@ -27,6 +26,8 @@ export const userAftorasationSlice = createSlice({
         return;
       } else if (typeof data.email !== null) {
         state.name = data.name;
+        state.email = data.email;
+        state.password = data.password;
       }
     },
   },

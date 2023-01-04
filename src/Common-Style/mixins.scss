@@ -1,0 +1,104 @@
+@import "./colors.scss";
+@mixin flexible() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin shadowActiveEl() {
+  box-shadow: 0px 0px 4px 2px $shadow;
+}
+@mixin borderActiveEl() {
+  border: 3px solid $bgBorder;
+  border-radius: 3px;
+}
+@mixin shadowEl() {
+  box-shadow: 1px 1px 5px 1px $shadowEl;
+}
+@mixin borderEl() {
+  border: 3px solid $bgBorderEl;
+  border-radius: 3px;
+}
+@mixin bgPage() {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    -45deg,
+    #44146971,
+    #6a023371,
+    #79198871,
+    #4b095f71
+  );
+  background-size: 400% 400%;
+  animation: gradient 4s ease infinite;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@mixin animateEl() {
+  animation: btn-after 1s infinite;
+}
+
+@keyframes btn-after {
+  0% {
+    right: -1%;
+    top: -1%;
+    height: 1%;
+    width: 1%;
+  }
+  12% {
+    right: -1%;
+    top: -1%;
+    height: 100%;
+    width: 1%;
+  }
+  24% {
+    right: -1%;
+    top: 106%;
+    height: 1%;
+    width: 1%;
+  }
+  36% {
+    right: -1%;
+    top: 106%;
+    height: 3%;
+    width: 101%;
+  }
+  48% {
+    right: 100%;
+    top: 106%;
+    height: 3%;
+    width: 1%;
+  }
+  60% {
+    right: 101%;
+    top: -5%;
+    height: 100%;
+    width: 1%;
+  }
+  72% {
+    right: 101%;
+    top: -1%;
+    height: 1%;
+    width: 1%;
+  }
+  84% {
+    right: -1%;
+    top: -1%;
+    height: 4%;
+    width: 100%;
+  }
+  100% {
+    right: -1%;
+    top: -1%;
+    height: 4%;
+    width: 0%;
+  }
+}

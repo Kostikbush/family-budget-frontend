@@ -1,0 +1,25 @@
+@import "../../Common-Style/mixins.scss";
+
+.login-page {
+  @include bgPage();
+}
+.form-change-enter {
+  opacity: 0;
+}
+.form-change-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.form-change-exit {
+  opacity: 1;
+}
+.form-change-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.login-page__forms {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

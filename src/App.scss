@@ -1,7 +1,13 @@
+@import "./Common-Style/colors.scss";
+@import "./Common-Style/mixins.scss";
 /* common styles */
+
 .container {
   max-width: 95%;
   min-width: 360px;
   margin: 0 auto;
   padding: 0 20px;
+}
+.arr-ml {
+  margin-left: 15px;
 }
