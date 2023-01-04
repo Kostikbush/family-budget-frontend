@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactElement, ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 import "./btn.scss";
 
 interface btnProps {

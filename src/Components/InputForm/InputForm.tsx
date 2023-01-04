@@ -1,4 +1,3 @@
-import { ChangeEventHandler } from "react";
 import "./inputForm.scss";
 interface InputProps {
   placeholder: string;

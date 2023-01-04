@@ -1,4 +1,5 @@
 import { IDataUser } from "../models/IDataUser";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 let idbSupported = false;
 let db;
 

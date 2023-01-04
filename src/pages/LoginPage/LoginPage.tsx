@@ -1,10 +1,9 @@
-import { useMemo, useRef, useState } from "react";
+import { useState } from "react";
 import { CSSTransition } from "react-transition-group";
-
-import { Btn } from "../../Components/Btn/Btn";
+//useMemo, useRef,
 import { Form } from "../../Components/Form/From";
-import { InputForm } from "../../Components/InputForm/InputForm";
-import { useAppSelectore, useAppDispatch } from "../../hooks/redux";
+
+//import { useAppSelectore, useAppDispatch } from "../../hooks/redux";
 
 import "./login.scss";
 export const LoginPage = () => {
