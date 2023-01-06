@@ -11,6 +11,7 @@
   @include borderEl();
   @include shadowEl();
   padding: 15px;
+  overflow: hidden;
 }
 .form-container__enter {
   color: white;
@@ -23,7 +24,6 @@
   align-items: center;
   & h2 {
     padding: 0 0 5px 0;
-    border-bottom: 2px solid white;
   }
 }
 .enter__btns {
@@ -44,18 +44,20 @@
   justify-content: space-around;
 }
 .form-change-enter {
-  transform: translateX(700px);
+  transform: translateX(200px);
+  transition: 100ms ease-in-out;
   opacity: 0.4;
 }
 .form-change-enter-active {
   opacity: 1;
-  transition: transform 200ms;
+  transition: 100ms ease-in-out;
 }
 .form-change-exit {
   opacity: 1;
+  transition: 100ms ease-in-out;
 }
 .form-change-exit-active {
-  transform: translateX(700px);
+  transform: translateX(300px);
   opacity: 0.4;
-  transition: transform 400ms;
+  transition: 100ms ease-in-out;
 }

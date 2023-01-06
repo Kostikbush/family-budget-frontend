@@ -3,22 +3,7 @@
 .login-page {
   @include bgPage();
 }
-.form-change-enter {
-  transform: translateX(700px);
-  opacity: 0.4;
-}
-.form-change-enter-active {
-  opacity: 1;
-  transition: transform 200ms;
-}
-.form-change-exit {
-  opacity: 1;
-}
-.form-change-exit-active {
-  transform: translateX(700px);
-  opacity: 0.4;
-  transition: transform 400ms;
-}
+
 .login-page__forms {
   height: 100vh;
   display: flex;
