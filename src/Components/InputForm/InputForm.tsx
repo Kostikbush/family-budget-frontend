@@ -15,15 +15,6 @@ export const InputForm = ({
   value,
 }: InputProps) => {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
-  const handleChangeVisiblePassword = () => {
-    const input = document.querySelector(".password-input");
-    setIsVisiblePassword(!isVisiblePassword);
-    if (isVisiblePassword === true) {
-      input && input.setAttribute("type", "text");
-    } else {
-      input && input.setAttribute("type", "password");
-    }
-  };
   return (
     <div className="input-wrapper">
       {type === "text" && (
@@ -32,7 +23,7 @@ export const InputForm = ({
             className="input-wrapper__input-from"
             placeholder={placeholder}
             defaultValue={value}
-            onChange={(event) => setState(event.target.value)}
+            onChange={(e) => setState(e.target.value)}
             type={type}
           />
         </>
@@ -40,14 +31,14 @@ export const InputForm = ({
       {type === "password" && (
         <>
           <input
-            className="input-wrapper__input-from password-input"
+            className="input-wrapper__input-from"
             placeholder={placeholder}
             defaultValue={value}
-            onChange={(event) => setState(event.target.value)}
-            type={type}
+            onChange={(e) => setState(e.target.value)}
+            type={isVisiblePassword ? "text" : type}
           />
           <button
-            onClick={handleChangeVisiblePassword}
+            onClick={() => setIsVisiblePassword(!isVisiblePassword)}
             className="input-wrapper__icon"
           >
             {isVisiblePassword && <AiFillEyeInvisible size={17} />}
@@ -55,6 +46,7 @@ export const InputForm = ({
           </button>
         </>
       )}
+
       <span className="input-wrapper__btn__stroke"></span>
     </div>
   );

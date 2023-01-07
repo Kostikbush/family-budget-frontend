@@ -14,9 +14,15 @@
 @mixin shadowEl() {
   box-shadow: 1px 1px 5px 1px $shadowEl;
 }
+@mixin shadowErr() {
+  box-shadow: 1px 1px 5px 1px $colorError;
+}
 @mixin borderEl() {
   border: 3px solid $bgBorderEl;
   border-radius: 3px;
+}
+@mixin borderError() {
+  border: 3px solid $colorError;
 }
 @mixin bgPage() {
   width: 100vw;

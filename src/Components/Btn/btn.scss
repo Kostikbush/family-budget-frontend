@@ -3,19 +3,18 @@
 .btn {
   @include borderEl();
   @include flexible();
+  font-size: 14px;
   color: rgb(255, 255, 255);
-  width: 140px;
-  height: 35px;
+  width: 170px;
+  height: 40px;
   padding-left: 5px;
+  overflow: hidden;
   background-color: transparent;
   position: relative;
   transition: 0.1s all;
   @include shadowEl();
-  &:first-child {
-    margin-right: 15px;
-  }
   &:hover .btn__stroke {
-    transition: 0.3s ease-in-out;
+    transition: 0.2s ease-in-out;
     position: absolute;
     height: 0%;
     top: 0;
@@ -25,12 +24,27 @@
     @include shadowActiveEl();
     @include animateEl();
   }
-  &:active {
-    @include borderActiveEl();
-    @include shadowActiveEl();
-    background-color: $bgEl;
-  }
   &:active .btn__stroke {
     display: none;
+  }
+}
+
+.pulse {
+  background: $bgEl;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: pulse 0.4s linear;
+  pointer-events: none;
+  position: absolute;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+@keyframes pulse {
+  55% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
   }
 }

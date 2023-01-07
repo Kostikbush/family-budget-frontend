@@ -1,0 +1,47 @@
+@import "../../Common-Style/colors.scss";
+@import "../../Common-Style/mixins.scss";
+.alert-container {
+  transform: scale(1);
+  position: absolute;
+  width: 300px;
+  height: 350px;
+  top: calc(50% - 350px / 2);
+  left: calc(50% - 300px / 2);
+  font-size: 17px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-around;
+  background: $bgEl;
+
+  & h2 {
+    font-size: 20px;
+  }
+}
+.alert-container-error {
+  @include borderError();
+  @include shadowErr();
+}
+.alert-h2-error {
+  color: $colorTextError;
+}
+
+//-enter-active -exit-activ
+.alert-anime-enter {
+  transform: scale(0);
+}
+.alert-anime-exit {
+  transform: scale(1);
+}
+.alert-anime-enter-active {
+  transition: 0.3s all;
+  transform: scale(1);
+}
+.alert-anime-exit-active {
+  transition: 0.3s all;
+  transform: scale(0);
+}
+.alert-btn-wrapper {
+  max-width: 150px;
+}

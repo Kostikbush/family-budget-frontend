@@ -1,38 +1,143 @@
 import { useState } from "react";
-//useMemo, useRef,
+import { SwitchTransition, CSSTransition } from "react-transition-group";
+import { BsArrowRight } from "react-icons/bs";
+
+import { validateValue } from "../../controlFunc/validateValue";
 import { Form } from "../../Components/Form/From";
-
-//import { useAppSelectore, useAppDispatch } from "../../hooks/redux";
-
+import { InputForm } from "../../Components/InputForm/InputForm";
+import { Btn } from "../../Components/Btn/Btn";
 import "./login.scss";
+import { Alert } from "../../Components/Alert/Alert";
 export const LoginPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [errorValidation, setErrorValidation] = useState(false);
+  const [vieEnterForm, setVieEnterForm] = useState(true);
+  const [errorsValidations, setErrorsValidations] = useState<string[]>([]);
+  const handleClickChangeForm = () => {
+    setEmail("");
+    setName("");
+    setPassword("");
+    setVieEnterForm(!vieEnterForm);
+  };
   //const data = useAppSelectore((state) => state.userAftorasationSlice);
   //const dispath = useAppDispatch();
-  const handleEnter = () => {};
-  const handleRegistration = () => {};
+
+  const handleEnter = () => {
+    const errors = [
+      ...validateValue(email, "email"),
+      ...validateValue(password, "password"),
+    ];
+    setErrorsValidations([...errors]);
+    errors.length && setErrorValidation(true);
+  };
+  const handleRegistration = () => {
+    const errors = [
+      ...validateValue(email, "email"),
+      ...validateValue(password, "password"),
+      ...validateValue(name, "name"),
+    ];
+    errors.length && setErrorValidation(true);
+  };
   return (
     <>
-      <header></header>
       <main className="login-page">
         <section className="container">
           <div className="login-page__forms">
-            <Form
-              handleRegistartion={handleRegistration}
-              handleEnter={handleEnter}
-              setPassword={setPassword}
-              setName={setName}
-              setEmail={setEmail}
-              name={name}
-              email={email}
-              password={password}
-            />
+            <Form errorValidation={errorValidation}>
+              <SwitchTransition mode="out-in">
+                <CSSTransition
+                  timeout={400}
+                  classNames="form-change"
+                  key={vieEnterForm ? "1" : "2"}
+                  in={vieEnterForm}
+                  unmountOnExit
+                >
+                  {vieEnterForm ? (
+                    <div className="form-container__enter">
+                      <h2>Вход</h2>
+                      <div className="enter__inputs">
+                        <InputForm
+                          value={email}
+                          placeholder="Введите email"
+                          type="text"
+                          setState={setEmail}
+                        />
+                        <InputForm
+                          value={password}
+                          placeholder="Введите пароль"
+                          type="password"
+                          setState={setPassword}
+                        />
+                      </div>
+                      <div className="enter__btns">
+                        <Btn text="Войти" handleClick={handleEnter} />
+                        <Btn
+                          handleClick={handleClickChangeForm}
+                          children={
+                            <BsArrowRight size={17} className="arr-ml" />
+                          }
+                          text="Регистрация"
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="form-container__enter">
+                      <h2>Регистрация</h2>
+                      <div className="registration__inputs">
+                        <InputForm
+                          placeholder="Введите имя"
+                          type="text"
+                          setState={setName}
+                        />
+                        <InputForm
+                          placeholder="Введите email"
+                          type="text"
+                          setState={setEmail}
+                        />
+                        <InputForm
+                          placeholder="Введите пароль"
+                          type="password"
+                          setState={setPassword}
+                        />
+                      </div>
+                      <div className="enter__btns">
+                        <Btn
+                          handleClick={handleRegistration}
+                          text="Зарегистрироваться"
+                        />
+                        <Btn
+                          handleClick={handleClickChangeForm}
+                          children={
+                            <BsArrowRight size={17} className="arr-ml" />
+                          }
+                          text="Войти"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </CSSTransition>
+              </SwitchTransition>
+            </Form>
           </div>
         </section>
       </main>
+
+      {errorValidation && (
+        <Alert
+          value={errorValidation}
+          handleValue={setErrorValidation}
+          message="У вас есть неправильные заполненные поля"
+          type="error"
+        >
+          <ul className="arror-login">
+            {errorsValidations.map((error, i) => (
+              <li key={i}>{error}</li>
+            ))}
+          </ul>
+        </Alert>
+      )}
     </>
   );
 };

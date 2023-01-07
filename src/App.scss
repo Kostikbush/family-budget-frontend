@@ -3,11 +3,23 @@
 /* common styles */
 
 .container {
-  max-width: 95%;
-  min-width: 360px;
   margin: 0 auto;
   padding: 0 20px;
 }
 .arr-ml {
   margin-left: 15px;
+}
+.alert-anime-enter {
+  transform: scale(0);
+}
+.alert-anime-exit {
+  transform: scale(1);
+}
+.alert-anime-enter-active {
+  transition: 0.3s all;
+  transform: scale(1);
+}
+.alert-anime-exit-active {
+  transition: 0.3s all;
+  transform: scale(0);
 }
