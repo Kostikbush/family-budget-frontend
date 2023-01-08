@@ -1,13 +1,13 @@
 @import "../../Common-Style/colors.scss";
 @import "../../Common-Style/mixins.scss";
 .alert-container {
+  overflow: hidden;
   transform: scale(1);
   position: absolute;
   width: 300px;
-  height: 350px;
-  top: calc(50% - 350px / 2);
+  height: 400px;
+  top: calc(50% - 400px / 2);
   left: calc(50% - 300px / 2);
-  font-size: 17px;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -15,16 +15,24 @@
   justify-content: space-around;
   background: $bgEl;
 
+  & p {
+    text-align: center;
+    line-height: 25px;
+    font-size: 17px;
+    color: white;
+  }
+
   & h2 {
     font-size: 20px;
   }
 }
 .alert-container-error {
-  @include borderError();
   @include shadowErr();
 }
 .alert-h2-error {
-  color: $colorTextError;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em $colorTextError,
+    0 0 0.5em $colorTextError, 0 0 0.1em $colorTextError;
+  color: white;
 }
 
 //-enter-active -exit-activ

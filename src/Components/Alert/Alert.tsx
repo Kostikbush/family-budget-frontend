@@ -41,7 +41,7 @@ export const Alert = ({
         <p>{message}</p>
         {children}
 
-        <Btn text="Закрыть" handleClick={handleClick} />
+        <Btn waveColor="light" text="Закрыть" handleClick={handleClick} />
       </section>
     </CSSTransition>
   );

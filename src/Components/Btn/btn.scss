@@ -30,7 +30,6 @@
 }
 
 .pulse {
-  background: $bgEl;
   border-radius: 50%;
   transform: scale(0);
   animation: pulse 0.4s linear;
@@ -47,4 +46,10 @@
     transform: scale(3);
     opacity: 0;
   }
+}
+.pulse-dark {
+  background: $bgEl;
+}
+.pulse-light {
+  background: rgba(255, 255, 255, 0.608);
 }

@@ -5,9 +5,15 @@ interface btnProps {
   text: string;
   handleClick: Function;
   children?: ReactNode;
+  waveColor?: "light" | "dark";
 }
 
-export const Btn = ({ text, handleClick, children }: btnProps) => {
+export const Btn = ({
+  text,
+  handleClick,
+  children,
+  waveColor = "dark",
+}: btnProps) => {
   const [vieWave, setVieWave] = useState(false);
   const [dataStyle, setDataVue] = useState({});
   const handleBtnClick = (event: React.MouseEvent) => {
@@ -21,17 +27,19 @@ export const Btn = ({ text, handleClick, children }: btnProps) => {
       left: `${x}px`,
     });
     setVieWave(true);
+    handleClick();
     setTimeout(() => {
       setVieWave(false);
       setDataVue({});
     }, 500);
-    handleClick(event);
   };
   return (
     <button onClick={handleBtnClick} className="btn">
       {text}
       <span className="btn__stroke"></span>
-      {vieWave && <span style={dataStyle} className="pulse"></span>}
+      {vieWave && (
+        <span style={dataStyle} className={`pulse pulse-${waveColor}`}></span>
+      )}
       {children}
     </button>
   );

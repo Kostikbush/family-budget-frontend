@@ -18,14 +18,12 @@ const LoginPage = React.lazy(() =>
 function App() {
   //const navigation = useNavigate();
   return (
-    <>
-      <React.Suspense fallback={<p>Loading page...</p>}>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/home" element={<HomePage />} />
-        </Routes>
-      </React.Suspense>
-    </>
+    <React.Suspense fallback={<p>Loading page...</p>}>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/home" element={<HomePage />} />
+      </Routes>
+    </React.Suspense>
   );
 }
 

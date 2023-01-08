@@ -24,6 +24,7 @@
 @mixin borderError() {
   border: 3px solid $colorError;
 }
+
 @mixin bgPage() {
   width: 100vw;
   height: 100vh;

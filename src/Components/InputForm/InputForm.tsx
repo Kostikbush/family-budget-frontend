@@ -15,6 +15,7 @@ export const InputForm = ({
   value,
 }: InputProps) => {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
+
   return (
     <div className="input-wrapper">
       {type === "text" && (

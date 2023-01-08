@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { BsArrowRight } from "react-icons/bs";
 
@@ -6,8 +6,9 @@ import { validateValue } from "../../controlFunc/validateValue";
 import { Form } from "../../Components/Form/From";
 import { InputForm } from "../../Components/InputForm/InputForm";
 import { Btn } from "../../Components/Btn/Btn";
-import "./login.scss";
 import { Alert } from "../../Components/Alert/Alert";
+import "./login.scss";
+
 export const LoginPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,13 +17,13 @@ export const LoginPage = () => {
   const [vieEnterForm, setVieEnterForm] = useState(true);
   const [errorsValidations, setErrorsValidations] = useState<string[]>([]);
   const handleClickChangeForm = () => {
+    setVieEnterForm(!vieEnterForm);
     setEmail("");
     setName("");
     setPassword("");
-    setVieEnterForm(!vieEnterForm);
   };
-  //const data = useAppSelectore((state) => state.userAftorasationSlice);
-  //const dispath = useAppDispatch();
+  // const data = useAppSelectore((state) => state.userAftorasationSlice);
+  // const dispath = useAppDispatch();
 
   const handleEnter = () => {
     const errors = [
@@ -38,17 +39,23 @@ export const LoginPage = () => {
       ...validateValue(password, "password"),
       ...validateValue(name, "name"),
     ];
+    setErrorsValidations([...errors]);
     errors.length && setErrorValidation(true);
   };
+  useMemo(() => {
+    if (errorsValidations.length && errorValidation === false) {
+      setErrorsValidations([]);
+    }
+  }, [errorsValidations, errorValidation]);
   return (
     <>
-      <main className="login-page">
+      <main className={errorValidation ? `login-page page-blur` : "login-page"}>
         <section className="container">
           <div className="login-page__forms">
             <Form errorValidation={errorValidation}>
               <SwitchTransition mode="out-in">
                 <CSSTransition
-                  timeout={400}
+                  timeout={350}
                   classNames="form-change"
                   key={vieEnterForm ? "1" : "2"}
                   in={vieEnterForm}
@@ -131,9 +138,11 @@ export const LoginPage = () => {
           message="У вас есть неправильные заполненные поля"
           type="error"
         >
-          <ul className="arror-login">
+          <ul className="error-login">
             {errorsValidations.map((error, i) => (
-              <li key={i}>{error}</li>
+              <li key={i}>
+                <span>{error}</span>
+              </li>
             ))}
           </ul>
         </Alert>
