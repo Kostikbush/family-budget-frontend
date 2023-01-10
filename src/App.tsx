@@ -17,6 +17,7 @@ const LoginPage = React.lazy(() =>
 
 function App() {
   //const navigation = useNavigate();
+  console.log("rerender");
   return (
     <React.Suspense fallback={<p>Loading page...</p>}>
       <Routes>

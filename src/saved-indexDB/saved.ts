@@ -1,9 +1,9 @@
-import { IDataUser } from "../models/IDataUser";
+import { IUserDataAftorization } from "../models/IActionPaylod";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 let idbSupported = false;
 let db;
 
-export const savedIndexDB = (aftorasationData: IDataUser) => {
+export const savedIndexDB = (aftorasationData: IUserDataAftorization) => {
   const aftorasationSaved = "aftorasationSaved";
 
   function indexedDBOk() {
@@ -38,10 +38,10 @@ export const savedIndexDB = (aftorasationData: IDataUser) => {
 };
 
 export const getDataFromIndexDB = () => {
-  let data = {
-    name: null,
-    email: null,
-    password: null,
+  let data: IUserDataAftorization = {
+    name: "",
+    email: "",
+    password: "",
   };
   function indexedDBOk() {
     idbSupported = true;

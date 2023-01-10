@@ -6,6 +6,7 @@ interface btnProps {
   handleClick: Function;
   children?: ReactNode;
   waveColor?: "light" | "dark";
+  isReqvest?: boolean;
 }
 
 export const Btn = ({
@@ -13,6 +14,7 @@ export const Btn = ({
   handleClick,
   children,
   waveColor = "dark",
+  isReqvest = false,
 }: btnProps) => {
   const [vieWave, setVieWave] = useState(false);
   const [dataStyle, setDataVue] = useState({});
@@ -34,13 +36,25 @@ export const Btn = ({
     }, 500);
   };
   return (
-    <button onClick={handleBtnClick} className="btn">
-      {text}
-      <span className="btn__stroke"></span>
-      {vieWave && (
-        <span style={dataStyle} className={`pulse pulse-${waveColor}`}></span>
+    <>
+      {!isReqvest ? (
+        <button onClick={handleBtnClick} className="btn">
+          {text}
+          <span className="btn__stroke"></span>
+          {vieWave && (
+            <span
+              style={dataStyle}
+              className={`pulse pulse-${waveColor}`}
+            ></span>
+          )}
+          {children}
+        </button>
+      ) : (
+        <button className="btn">
+          {text}
+          {children}
+        </button>
       )}
-      {children}
-    </button>
+    </>
   );
 };

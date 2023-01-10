@@ -2,10 +2,12 @@ export const validateValue = (value: string, type: string) => {
   const errors = new Set();
   if (type === "name") {
     value.length < 3 && errors.add("Имя");
+    value.trim() === "" && errors.add("Имя");
   }
   if (type === "password") {
     value.length < 6 && errors.add("Пароль");
     value.length > 20 && errors.add("Пароль");
+    value.trim() === "" && errors.add("Пароль");
   }
   if (type === "email") {
     let arr = [];
@@ -14,6 +16,7 @@ export const validateValue = (value: string, type: string) => {
         arr.push(value[i]);
       }
     }
+    value.trim() === "" && errors.add("Почта");
     arr.length < 2 && errors.add("Почта");
     value.length < 5 && errors.add("Почта");
   }

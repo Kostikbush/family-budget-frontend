@@ -30,9 +30,7 @@
   @include shadowErr();
 }
 .alert-h2-error {
-  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em $colorTextError,
-    0 0 0.5em $colorTextError, 0 0 0.1em $colorTextError;
-  color: white;
+  color: $colorTextError;
 }
 
 //-enter-active -exit-activ
