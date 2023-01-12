@@ -9,7 +9,7 @@ import { Btn } from "../../Components/Btn/Btn";
 import { Alert } from "../../Components/Alert/Alert";
 import {
   useLoginUserMutation,
-  useRegistrationUserMutation,
+  useRegistUserMutation,
 } from "../../service/authApi";
 import { useAppSelectore, useAppDispatch } from "../../hooks/redux";
 import { getDataUser, savedDataUser } from "../../store/reducers/UserSlice";
@@ -43,7 +43,7 @@ export const LoginPage = () => {
       isError: isErrorRegistration,
       error: errorRegistration,
     },
-  ] = useRegistrationUserMutation();
+  ] = useRegistUserMutation();
 
   const authData = useAppSelectore((state) => state.ayth);
   const dispatch = useAppDispatch();
@@ -68,7 +68,7 @@ export const LoginPage = () => {
     setErrorsValidations([...errors]);
     errors.length && setIsErrorValidation(true);
 
-    !errors.length && (await loginUser({ email, password }));
+    !errors.length && (await loginUser({ email: email, password: password }));
   };
   const handleRegistration = () => {
     const errors = [
@@ -99,7 +99,13 @@ export const LoginPage = () => {
       setIsLoadingRespFromBack(false);
     }
   }, [isLoginLoading, isLoadingRegistration]);
-  console.log(dataRegistration, authData, errorsValidations);
+  console.log(
+    dataRegistration,
+    authData,
+    errorsValidations,
+    loginData,
+    savedDataUser
+  );
   return (
     <>
       <main
