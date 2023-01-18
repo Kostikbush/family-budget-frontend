@@ -1,7 +1,8 @@
 import { IUserDataAftorization } from "../models/IActionPaylod";
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 let idbSupported = false;
-let db;
+let db: IDBDatabase;
 
 export const savedIndexDB = (aftorasationData: IUserDataAftorization) => {
   const aftorasationSaved = "aftorasationSaved";
@@ -37,12 +38,10 @@ export const savedIndexDB = (aftorasationData: IUserDataAftorization) => {
   };
 };
 
-export const getDataFromIndexDB = () => {
-  let data: IUserDataAftorization = {
-    name: "",
-    email: "",
-    password: "",
-  };
+export const getDataFromIndexDB = (func: Function, fun: Function) => {
+  let name: string = "";
+  let email: string = "";
+  let password: string = "";
   function indexedDBOk() {
     idbSupported = true;
     return "indexedDB" in window;
@@ -72,12 +71,25 @@ export const getDataFromIndexDB = () => {
       let cursor = request.result;
       if (cursor) {
         let value = cursor.value;
-        data = value;
+        name = value.name.slice(value.name.lenght);
+        email = value.email.slice(value.email.lenght);
+        password = value.password.slice(value.password.lenght);
+        func(fun({ name, email, password }));
       }
     };
     openRequest.onerror = function () {
       console.log("error");
     };
   };
+  const data = {
+    email,
+    name,
+    password,
+  };
   return data;
 };
+// return new Promise((resolve) => {
+//   if (cursor !== null) {
+//     resolve({ data: cursor.value });
+//   }
+// });

@@ -5,7 +5,7 @@ import "./inputForm.scss";
 interface InputProps {
   placeholder: string;
   type: string;
-  setState: Function;
+  setState?: Function;
   value?: string;
 }
 export const InputForm = ({
@@ -19,24 +19,43 @@ export const InputForm = ({
     <div className="input-wrapper">
       {type === "text" && (
         <>
-          <input
-            className="input-wrapper__input-from"
-            placeholder={placeholder}
-            defaultValue={value}
-            onChange={(e) => setState(e.target.value)}
-            type={type}
-          />
+          {setState ? (
+            <input
+              className="input-wrapper__input-from"
+              placeholder={placeholder}
+              defaultValue={value}
+              onChange={(e) => setState(e.target.value)}
+              type={type}
+            />
+          ) : (
+            <input
+              className="input-wrapper__input-from"
+              placeholder={placeholder}
+              defaultValue={value}
+              type={type}
+            />
+          )}
         </>
       )}
       {type === "password" && (
         <>
-          <input
-            className="input-wrapper__input-from"
-            placeholder={placeholder}
-            defaultValue={value}
-            onChange={(e) => setState(e.target.value)}
-            type={isVisiblePassword ? "text" : type}
-          />
+          {setState ? (
+            <input
+              className="input-wrapper__input-from"
+              placeholder={placeholder}
+              defaultValue={value}
+              onChange={(e) => setState(e.target.value)}
+              type={isVisiblePassword ? "text" : type}
+            />
+          ) : (
+            <input
+              className="input-wrapper__input-from"
+              placeholder={placeholder}
+              defaultValue={value}
+              type={isVisiblePassword ? "text" : type}
+            />
+          )}
+
           <button
             onClick={() => setIsVisiblePassword(!isVisiblePassword)}
             className="input-wrapper__icon"

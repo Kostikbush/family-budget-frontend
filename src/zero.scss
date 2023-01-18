@@ -1,3 +1,4 @@
+@import "./Common-Style/mixins.scss";
 @font-face {
   font-family: "Vinnytsia"; /* Имя шрифта */
   src: url("./assets/fonts/VinnytsiaSansReg.ttf"); /* Путь к файлу со шрифтом */
@@ -40,6 +41,7 @@ body {
   -moz-text-size-adjust: 100;
   -webkit-text-size-adjust: 100;
   font-family: "Vinnytsia";
+  @include bgBody();
 }
 
 input,

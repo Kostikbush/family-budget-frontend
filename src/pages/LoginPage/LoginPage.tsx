@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
+import { useNavigate } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 
 import { validateValue } from "../../controlFunc/validateValue";
-import { Form } from "../../Components/Form/From";
+import { WrapperForm } from "../../Components/WrapperForm/WrapperForm";
 import { InputForm } from "../../Components/InputForm/InputForm";
 import { Btn } from "../../Components/Btn/Btn";
 import { Alert } from "../../Components/Alert/Alert";
@@ -11,12 +12,19 @@ import {
   useLoginUserMutation,
   useRegistUserMutation,
 } from "../../service/authApi";
+
 import { useAppSelectore, useAppDispatch } from "../../hooks/redux";
-import { getDataUser, savedDataUser } from "../../store/reducers/UserSlice";
-import "./login.scss";
+import {
+  dataUserSaveStore,
+  savedDataUser,
+} from "../../store/reducers/UserAftorasationSlice";
 import { isErrorWithMessage } from "../../models/IErrorBackend";
+import { Form } from "../../Components/Form/Form";
+import "./login.scss";
+import { getDataFromIndexDB } from "../../saved-indexDB/saved";
 
 export const LoginPage = () => {
+  let navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +33,7 @@ export const LoginPage = () => {
   const [errorsValidations, setErrorsValidations] = useState<string[]>([]);
   const [isErrorFromBackend, setIsErrorFromBackend] = useState(false);
   const [isLoadingRespFromBack, setIsLoadingRespFromBack] = useState(false);
+  const [isExitLoginPage, setIsExitLoginPage] = useState(false);
   const [
     loginUser,
     {
@@ -48,10 +57,7 @@ export const LoginPage = () => {
   const authData = useAppSelectore((state) => state.ayth);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getDataUser());
-    setEmail(authData.email);
-    setName(authData.name);
-    setPassword(authData.password);
+    getDataFromIndexDB(dispatch, dataUserSaveStore);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleClickChangeForm = () => {
@@ -70,7 +76,7 @@ export const LoginPage = () => {
 
     !errors.length && (await loginUser({ email: email, password: password }));
   };
-  const handleRegistration = () => {
+  const handleRegistration = async () => {
     const errors = [
       ...validateValue(email, "email"),
       ...validateValue(password, "password"),
@@ -79,9 +85,7 @@ export const LoginPage = () => {
     setErrorsValidations([...errors]);
     errors.length && setIsErrorValidation(true);
 
-    !errors.length && registrationUser({ name, email, password });
-
-    //dispatch(savedDataUser({ email: email, name: name, password: password }));
+    !errors.length && (await registrationUser({ name, email, password }));
   };
   useMemo(() => {
     if (errorsValidations.length && isErrorValidation === false) {
@@ -99,21 +103,44 @@ export const LoginPage = () => {
       setIsLoadingRespFromBack(false);
     }
   }, [isLoginLoading, isLoadingRegistration]);
-  console.log(
-    dataRegistration,
-    authData,
-    errorsValidations,
-    loginData,
-    savedDataUser
-  );
+  ///////////////////////////////
+  console.log(dataRegistration, loginData, errorsValidations, name, authData);
+  ////////////////////////////////
+  useMemo(() => {
+    if (authData.name !== "") {
+      setEmail(authData.email);
+      setName(authData.name);
+      setPassword(authData.password);
+    }
+  }, [authData]);
+  useMemo(() => {
+    if (dataRegistration) {
+      dispatch(savedDataUser({ name, email, password }));
+      setIsExitLoginPage(true);
+      console.log("registration");
+      setTimeout(() => {
+        navigate("/hello");
+      }, 700);
+    }
+    if (loginData) {
+      //useNavigate()
+      setIsExitLoginPage(true);
+      setTimeout(() => {
+        navigate("/hello");
+      }, 400);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataRegistration, loginData]);
+  // qwerty58649@yandex.ru
+  // 1234567
   return (
-    <>
+    <section className={isExitLoginPage ? "page-exit" : "page-enter"}>
       <main
         className={isErrorValidation ? `login-page page-blur` : "login-page"}
       >
         <section className="container">
           <div className="login-page__forms">
-            <Form
+            <WrapperForm
               isLoadingReq={isLoadingRespFromBack}
               errorValidation={isErrorValidation}
             >
@@ -126,7 +153,7 @@ export const LoginPage = () => {
                   unmountOnExit
                 >
                   {isVieEnterForm ? (
-                    <div className="form-container__enter">
+                    <Form styles="form-container__enter">
                       <h2>Вход</h2>
                       <div className="enter__inputs">
                         <InputForm
@@ -144,6 +171,7 @@ export const LoginPage = () => {
                       </div>
                       <div className="enter__btns">
                         <Btn
+                          type="submit"
                           isReqvest={isLoginLoading}
                           text="Войти"
                           handleClick={handleEnter}
@@ -157,9 +185,9 @@ export const LoginPage = () => {
                           text="Регистрация"
                         />
                       </div>
-                    </div>
+                    </Form>
                   ) : (
-                    <div className="form-container__enter">
+                    <Form styles="form-container__enter">
                       <h2>Регистрация</h2>
                       <div className="registration__inputs">
                         <InputForm
@@ -193,15 +221,14 @@ export const LoginPage = () => {
                           text="Вход"
                         />
                       </div>
-                    </div>
+                    </Form>
                   )}
                 </CSSTransition>
               </SwitchTransition>
-            </Form>
+            </WrapperForm>
           </div>
         </section>
       </main>
-
       {isErrorValidation && (
         <Alert
           value={isErrorValidation}
@@ -249,6 +276,6 @@ export const LoginPage = () => {
           )}
         </Alert>
       )}
-    </>
+    </section>
   );
 };

@@ -7,6 +7,7 @@ interface btnProps {
   children?: ReactNode;
   waveColor?: "light" | "dark";
   isReqvest?: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 export const Btn = ({
@@ -15,6 +16,7 @@ export const Btn = ({
   children,
   waveColor = "dark",
   isReqvest = false,
+  type,
 }: btnProps) => {
   const [vieWave, setVieWave] = useState(false);
   const [dataStyle, setDataVue] = useState({});
@@ -38,7 +40,7 @@ export const Btn = ({
   return (
     <>
       {!isReqvest ? (
-        <button onClick={handleBtnClick} className="btn">
+        <button type={type} onClick={handleBtnClick} className="btn">
           {text}
           <span className="btn__stroke"></span>
           {vieWave && (

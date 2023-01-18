@@ -1,8 +1,10 @@
 import React from "react";
+
 import { Routes, Route } from "react-router-dom";
-//import { useNavigate } from "react-router-dom";
-import "./zero.css";
+
+import "./zero.scss";
 import "./App.scss";
+import { HelloPage } from "./pages/HelloPage/HelloPage";
 
 const HomePage = React.lazy(() =>
   import("./pages/HomePage/HomePage").then(({ HomePage }) => ({
@@ -16,12 +18,26 @@ const LoginPage = React.lazy(() =>
 );
 
 function App() {
-  //const navigation = useNavigate();
-  console.log("rerender");
   return (
-    <React.Suspense fallback={<p>Loading page...</p>}>
+    <React.Suspense
+      fallback={
+        <article className="wrapper-loader">
+          <div className="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </article>
+      }
+    >
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/hello" element={<HelloPage />} />
         <Route path="/home" element={<HomePage />} />
       </Routes>
     </React.Suspense>

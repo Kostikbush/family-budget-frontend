@@ -1,27 +1,23 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUserDataAftorization } from "../../models/IActionPaylod";
-import { getDataFromIndexDB, savedIndexDB } from "../../saved-indexDB/saved";
+import { savedIndexDB } from "../../saved-indexDB/saved";
 import { RootState } from "../store";
 
 const initialState: IUserDataAftorization = {
   name: "",
   email: "",
   password: "",
+  status: "loading",
 };
 
 export const userAftorasationSlice = createSlice({
   name: "userData",
   initialState,
   reducers: {
-    getDataUser(state) {
-      let data = getDataFromIndexDB();
-      if (!data) {
-        return;
-      } else if (data.email !== "") {
-        state.name = data.name;
-        state.email = data.email;
-        state.password = data.password;
-      }
+    dataUserSaveStore(state, action: PayloadAction<IUserDataAftorization>) {
+      state.name = action.payload.name;
+      state.email = action.payload.email;
+      state.password = action.payload.password;
     },
     savedDataUser(state, action: PayloadAction<IUserDataAftorization>) {
       state.email = action.payload.email;
@@ -38,7 +34,8 @@ export const userAftorasationSlice = createSlice({
     enter(state, action) {},
   },
 });
-export const { getDataUser, enter, registration, savedDataUser } =
+
+export const { dataUserSaveStore, enter, registration, savedDataUser } =
   userAftorasationSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

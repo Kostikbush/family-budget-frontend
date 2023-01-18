@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { LoadingReqvest } from "../LoadingReqvest/LoadingReqvest";
 
-import "./form.scss";
+import "./wrapperForm.scss";
 
 interface FormProps {
   children: ReactNode;
@@ -9,7 +9,7 @@ interface FormProps {
   isLoadingReq?: boolean;
 }
 
-export const Form = ({
+export const WrapperForm = ({
   errorValidation,
   children,
   isLoadingReq = false,
