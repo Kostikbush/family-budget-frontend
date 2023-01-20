@@ -177,6 +177,7 @@ export const LoginPage = () => {
                           handleClick={handleEnter}
                         />
                         <Btn
+                          testId="btn-testCgangeForm"
                           isReqvest={isLoginLoading}
                           handleClick={handleClickChangeForm}
                           children={
@@ -188,7 +189,7 @@ export const LoginPage = () => {
                     </Form>
                   ) : (
                     <Form styles="form-container__enter">
-                      <h2>Регистрация</h2>
+                      <h2 data-testid="h2-registration">Регистрация</h2>
                       <div className="registration__inputs">
                         <InputForm
                           placeholder="Введите имя"
