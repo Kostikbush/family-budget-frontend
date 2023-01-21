@@ -153,7 +153,10 @@ export const LoginPage = () => {
                   unmountOnExit
                 >
                   {isVieEnterForm ? (
-                    <Form styles="form-container__enter">
+                    <Form
+                      testID="form-enter-snap"
+                      styles="form-container__enter"
+                    >
                       <h2>Вход</h2>
                       <div className="enter__inputs">
                         <InputForm

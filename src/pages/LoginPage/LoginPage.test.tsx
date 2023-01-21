@@ -21,6 +21,9 @@ describe("Test Login Page", () => {
     const input = screen.getByPlaceholderText(/Введите email/i);
     expect(enter).toBeInTheDocument();
     expect(input).toBeInTheDocument();
+    const formEnter = screen.getByTestId("form-enter-snap");
+    expect(formEnter).toBeInTheDocument();
+    expect(formEnter).toMatchSnapshot();
   });
   test("Click to btn change form", async () => {
     render(
@@ -33,12 +36,11 @@ describe("Test Login Page", () => {
       </Provider>
     );
 
-    //const btnChangeForm = screen.getByTestId("btn-testCgangeForm");
+    const btnChangeForm = screen.getByTestId("btn-testCgangeForm");
     const inpyutForm = screen.getByPlaceholderText(/Введите email/i);
 
-    // eslint-disable-next-line testing-library/no-wait-for-side-effects
     userEvent.type(inpyutForm, "Konstantin");
-    //expect(btnChangeForm).toBeInTheDocument();
+    expect(btnChangeForm).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Введите email")).toContainHTML(
       "Konstantin"
     );
@@ -46,7 +48,5 @@ describe("Test Login Page", () => {
     await userEvent.click(screen.getByTestId("btn-testCgangeForm"));
     const newH2 = await screen.findByTestId(/h2-registration/i);
     expect(newH2).toContainHTML("Регистрация");
-    // eslint-disable-next-line testing-library/no-debugging-utils
-    screen.debug();
   });
 });
