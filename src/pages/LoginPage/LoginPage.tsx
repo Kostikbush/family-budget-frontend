@@ -53,7 +53,9 @@ export const LoginPage = () => {
       error: errorRegistration,
     },
   ] = useRegistUserMutation();
+  ////////////////////////////===================================
 
+  /////////////////////////////-----------------------------------
   const authData = useAppSelectore((state) => state.ayth);
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -88,10 +90,10 @@ export const LoginPage = () => {
     !errors.length && (await registrationUser({ name, email, password }));
   };
   useMemo(() => {
-    if (errorsValidations.length && isErrorValidation === false) {
+    if (isErrorValidation === false) {
       setErrorsValidations([]);
     }
-  }, [errorsValidations, isErrorValidation]);
+  }, [isErrorValidation]);
   useMemo(() => {
     isLoginError && setIsErrorFromBackend(true);
     isErrorRegistration && setIsErrorFromBackend(true);
@@ -103,9 +105,7 @@ export const LoginPage = () => {
       setIsLoadingRespFromBack(false);
     }
   }, [isLoginLoading, isLoadingRegistration]);
-  ///////////////////////////////
-  console.log(dataRegistration, loginData, errorsValidations, name, authData);
-  ////////////////////////////////
+
   useMemo(() => {
     if (authData.name !== "") {
       setEmail(authData.email);
@@ -123,7 +123,6 @@ export const LoginPage = () => {
       }, 700);
     }
     if (loginData) {
-      //useNavigate()
       setIsExitLoginPage(true);
       setTimeout(() => {
         navigate("/hello");
@@ -131,8 +130,6 @@ export const LoginPage = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataRegistration, loginData]);
-  // qwerty58649@yandex.ru
-  // 1234567
   return (
     <section className={isExitLoginPage ? "page-exit" : "page-enter"}>
       <main
@@ -256,28 +253,36 @@ export const LoginPage = () => {
           message="Ошибка при авторизации"
           type="error"
         >
-          {loginError && "data" in loginError && (
+          {isVieEnterForm && loginError && "data" in loginError && (
             <ul className="error-login">
               <li>
                 <span>
                   {isErrorWithMessage(loginError) &&
                     "message" in loginError.data &&
-                    loginError.data.message}
+                    loginError.data.message + "."}
                 </span>
               </li>
             </ul>
           )}
-          {errorRegistration && "data" in errorRegistration && (
-            <ul className="error-login">
-              <li>
-                <span>
-                  {isErrorWithMessage(errorRegistration) &&
-                    "message" in errorRegistration.data &&
-                    errorRegistration.data.message}
-                </span>
-              </li>
-            </ul>
-          )}
+          {!isVieEnterForm &&
+            errorRegistration &&
+            "data" in errorRegistration && (
+              <ul className="error-login">
+                <li className="error-reg">
+                  <span>
+                    {isErrorWithMessage(errorRegistration) &&
+                      // eslint-disable-next-line no-useless-concat
+                      errorRegistration.data.message + ". " + " Испрвте поля:"}
+                  </span>
+                  <span className="errors-list">
+                    {isErrorWithMessage(errorRegistration) &&
+                      errorRegistration.data.errors.map((objError) => (
+                        <span>{objError.param}</span>
+                      ))}
+                  </span>
+                </li>
+              </ul>
+            )}
         </Alert>
       )}
     </section>

@@ -99,3 +99,12 @@
 .page-blur {
   filter: blur(2px);
 }
+.error-reg {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.errors-list {
+  display: flex;
+  flex-direction: column;
+}

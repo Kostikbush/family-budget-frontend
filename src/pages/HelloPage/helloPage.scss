@@ -2,10 +2,100 @@
 @import "../../Common-Style/colors.scss";
 
 .hello-page-wrapper {
-  @include bgPage();
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   align-items: center;
+  position: relative;
+  color: white;
+
+  & p {
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    height: 15px;
+    text-align: end;
+    position: relative;
+    bottom: 10%;
+    & span {
+      text-align: end;
+      font-size: 20px;
+      z-index: 10;
+    }
+  }
+}
+.hello-page-wrapper-day {
+  background-color: #f7ebb9;
+  background-image: url("../../assets/img/hello/day.jpg");
+}
+.hello-page-wrapper-morning {
+  background-color: #f6c193;
+  background-image: url("../../assets/img/hello/evening.jpg");
+}
+
+.hello-page-wrapper-evning {
+  background-color: #f6c193;
+
+  background-image: url("../../assets/img/hello/evening.jpg");
+}
+.hello-page-wrapper-night {
+  background-color: #a6c2ef;
+  background-image: url("../../assets/img/hello/night.jpg");
+}
+.icon-hello {
+  position: absolute;
+  left: calc(50% - 35px / 2);
+  top: 30%;
+}
+@media (max-width: 700px) {
+  .hello-page-wrapper {
+    background-size: 120%;
+    & p {
+      bottom: 5%;
+      & span {
+        font-size: 18px;
+      }
+    }
+  }
+  .icon-hello {
+    position: absolute;
+    left: calc(50% - 35px / 2);
+    top: 35%;
+  }
+}
+@media (max-width: 500px) {
+  .hello-page-wrapper {
+    background-size: 120%;
+    & p {
+      bottom: 5%;
+      & span {
+        font-size: 18px;
+      }
+    }
+  }
+  .icon-hello {
+    position: absolute;
+    left: calc(50% - 35px / 2);
+    top: 35%;
+  }
+}
+@media (max-width: 360px) {
+  .hello-page-wrapper {
+    background-size: 120%;
+    & p {
+      & span {
+        font-size: 15px;
+      }
+    }
+  }
+  .icon-hello {
+    position: absolute;
+    left: calc(50% - 35px / 2);
+    top: 35%;
+  }
 }
