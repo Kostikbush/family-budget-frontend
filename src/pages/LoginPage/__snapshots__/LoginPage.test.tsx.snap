@@ -15,26 +15,26 @@ exports[`Test Login Page LoginPage vie 1`] = `
       class="input-wrapper input-wrapper-color-login"
     >
       <input
-        class="input-wrapper__input-from input-color-login"
+        class="input-wrapper__input input-color-login"
         placeholder="Введите email"
         type="text"
         value=""
       />
       <span
-        class="input-wrapper__btn__stroke"
+        class="input-wrapper-btn__stroke"
       />
     </div>
     <div
       class="input-wrapper input-wrapper-color-login"
     >
       <input
-        class="input-wrapper__input-from input-color-login"
+        class="input-wrapper__input input-color-login"
         placeholder="Введите пароль"
         type="password"
         value=""
       />
       <button
-        class="input-wrapper__icon"
+        class="input-wrapper__btn"
       >
         <svg
           fill="currentColor"
@@ -51,7 +51,7 @@ exports[`Test Login Page LoginPage vie 1`] = `
         </svg>
       </button>
       <span
-        class="input-wrapper__btn__stroke"
+        class="input-wrapper-btn__stroke"
       />
     </div>
   </div>
