@@ -32,7 +32,7 @@
 .pulse {
   border-radius: 50%;
   transform: scale(0);
-  animation: pulse 0.4s linear;
+  animation: pulse 0.3s linear;
   pointer-events: none;
   position: absolute;
   transition: transform 0.3s, opacity 0.3s;
@@ -52,4 +52,17 @@
 }
 .pulse-light {
   background: rgba(255, 255, 255, 0.608);
+}
+@media (max-height: 480px) {
+  .btn {
+    font-size: 12px;
+    height: 25px;
+  }
+}
+@media (max-height: 400px) {
+  .btn {
+    font-size: 10px;
+    height: 20px;
+    width: 115px;
+  }
 }

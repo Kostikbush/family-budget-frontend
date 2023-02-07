@@ -1,0 +1,179 @@
+@import "../../Common-Style/colors.scss";
+@import "../../Common-Style/mixins.scss";
+.app-nav__wrapper {
+  padding: 5px;
+  @include shadowEl();
+  background-color: $colorBackOfElementsMainPage;
+  width: 70px;
+  position: absolute;
+  top: 20%;
+  left: 1%;
+  z-index: 100;
+  border-radius: 5px;
+}
+.app-nav-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.link {
+  margin-bottom: 10px;
+  width: 50px;
+  height: 50px;
+  transition: 0.3s all;
+  position: relative;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:hover span {
+    opacity: 1;
+    width: 100px;
+    height: 50px;
+    display: flex;
+  }
+  &:hover {
+    height: 50px;
+    width: 100px;
+    transform: translateX(20px);
+  }
+  & .link-content {
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    transition: 0.2s all;
+    &:first-child {
+      padding-left: 15px;
+    }
+  }
+  &:hover .link-content {
+    transform: translateX(20px);
+    width: 160px;
+  }
+  & span {
+    color: white;
+    font-size: 15px;
+    line-height: 20px;
+    align-items: center;
+    justify-content: start;
+    transition: width opacity 0.5s;
+
+    width: 0;
+    height: 50px;
+    opacity: 0;
+  }
+}
+//home
+.active-link-home .link-content-home {
+  box-shadow: 0px 0px 3px 5px rgba(222, 184, 135, 0.4);
+}
+
+.link-content-home {
+  background-color: #deb887;
+}
+//--->
+
+// stat
+
+.link-content-stat {
+  background-color: #b387de;
+}
+
+.active-link-stat .link-content-stat {
+  box-shadow: 0px 0px 3px 5px rgba(179, 135, 222, 0.4);
+}
+// --->
+
+// aim
+.link-content-aim {
+  background-color: #de8787;
+}
+.active-link-aim .link-content-aim {
+  box-shadow: 0px 0px 3px 5px rgba(222, 135, 135, 0.4);
+}
+
+// -->>
+
+// incoms
+.link-content-incom {
+  background-color: #87de9d;
+}
+.active-link-incom .link-content-incom {
+  box-shadow: 0px 0px 3px 5px rgba(135, 222, 157, 0.4);
+}
+
+// -->>
+
+// expens
+
+.link-content-expens {
+  background-color: #87a8de;
+}
+.active-link-expens .link-content-expens {
+  box-shadow: 0px 0px 3px 5px rgba(135, 168, 222, 0.4);
+}
+
+// -->
+
+// chat
+
+.link-content-chat {
+  background-color: #de87dd;
+}
+.active-link-chat .link-content-chat {
+  box-shadow: 0px 0px 3px 5px rgba(222, 135, 221, 0.4);
+}
+
+// -->
+
+// account
+
+.link-content-account {
+  background-color: #a887de;
+}
+.active-link-account .link-content-account {
+  box-shadow: 0px 0px 3px 5px rgba(168, 135, 222, 0.4);
+}
+
+// -->
+
+// account
+
+.link-content-createBudget {
+  background-color: #87d1de;
+}
+.active-link-createBudget .link-content-createBudget {
+  box-shadow: 0px 0px 3px 5px rgba(135, 209, 222, 0.4);
+}
+
+// -->
+
+.have-not-budget {
+  opacity: 0.3;
+}
+@media (max-width: 500px) {
+  .app-nav__wrapper {
+    width: 50px;
+  }
+  .link-content {
+    height: 30px;
+    width: 30px;
+  }
+  .link {
+    height: 30px;
+    width: 30px;
+    & span {
+      color: white;
+      font-size: 11px;
+      line-height: 13px;
+    }
+  }
+  .link .link-content {
+    height: 30px;
+  }
+  .link .link-content:first-child {
+    padding-left: 4px;
+  }
+}

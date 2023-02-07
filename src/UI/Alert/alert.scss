@@ -1,0 +1,92 @@
+@import "../../Common-Style/colors.scss";
+@import "../../Common-Style/mixins.scss";
+.app__alert-container {
+  overflow: hidden;
+  transform: scale(1);
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  top: calc(50% - 400px / 2);
+  left: calc(50% - 300px / 2);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-around;
+  background: $bgEl;
+
+  & p {
+    text-align: center;
+    line-height: 25px;
+    font-size: 17px;
+    color: white;
+  }
+
+  & h2 {
+    font-size: 20px;
+  }
+}
+.app__alert-container-error {
+  @include shadowErr();
+}
+.h2-error {
+  color: $colorTextError;
+}
+
+//-enter-active -exit-activ
+.app-alert-anime-enter {
+  transform: scale(0);
+}
+.app-alert-anime-exit {
+  transform: scale(1);
+}
+.app-alert-anime-enter-active {
+  transition: 0.3s all;
+  transform: scale(1);
+}
+.app-alert-anime-exit-active {
+  transition: 0.3s all;
+  transform: scale(0);
+}
+.alert-btn-wrapper {
+  max-width: 150px;
+}
+@media (max-height: 400px) {
+  .app__alert-container {
+    width: 280px;
+    height: 300px;
+    top: calc(50% - 300px / 2);
+    left: calc(50% - 280px / 2);
+    & p {
+      line-height: 20px;
+      font-size: 12px;
+    }
+
+    & h2 {
+      font-size: 15px;
+    }
+  }
+}
+@media (max-width: 350px) {
+  .app__alert-container {
+    width: 180px;
+    height: 200px;
+    top: calc(50% - 180px / 2);
+    left: calc(50% - 200px / 2);
+    & p {
+      line-height: 15px;
+      font-size: 10px;
+    }
+
+    & h2 {
+      font-size: 13px;
+    }
+    & li {
+      & span {
+        font-size: 10px;
+        line-height: 14px;
+        padding: 2px;
+      }
+    }
+  }
+}

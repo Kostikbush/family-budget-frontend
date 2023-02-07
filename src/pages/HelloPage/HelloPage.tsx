@@ -6,7 +6,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import "./helloPage.scss";
 import useImagePreloader from "../../hooks/preloadImg";
 import { dataUserSaveStore } from "../../store/reducers/UserAftorasationSlice";
-import { getDataFromIndexDB } from "../../saved-indexDB/saved";
+import { getDataFromIndexDB } from "../../helpersFunc/saved";
 import { useNavigate } from "react-router";
 
 const img1 = require("../../assets/img/hello/day.jpg");
@@ -80,7 +80,7 @@ export const HelloPage = () => {
   return (
     <>
       {imagesPreloaded && (
-        <main className={isExitHelloPage ? "page-exit" : "page-enter"}>
+        <main>
           <section
             className={`
         hello-page-wrapper
@@ -106,7 +106,7 @@ export const HelloPage = () => {
             </p>
           </section>
         </main>
-      )}{" "}
+      )}
     </>
   );
 };

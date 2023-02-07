@@ -28,15 +28,8 @@
 @mixin bgPage() {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-    -45deg,
-    #44146925,
-    #6a023325,
-    #79198825,
-    #4b095f25
-  );
-  background-size: 400% 400%;
-  animation: gradient 4s ease infinite;
+  background-size: 100% 100%;
+  animation: gradient 1s ease infinite;
 }
 @keyframes gradient {
   0% {
@@ -109,36 +102,7 @@
     width: 0%;
   }
 }
-.page-enter {
-  transition: 0.3s all;
-  animation: page-enter 1s ease normal;
-}
-@keyframes page-enter {
-  0% {
-    opacity: 0;
-    transform: translateX(-110%);
-  }
 
-  100% {
-    opacity: 1;
-    transform: translateX(0%);
-  }
-}
-.page-exit {
-  transition: 0.3s all;
-  animation: page-exit 1s ease normal;
-}
-@keyframes page-exit {
-  0% {
-    opacity: 1;
-    transform: translateX(0%);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateX(110%);
-  }
-}
 @mixin bgBody() {
   background: linear-gradient(
     -45deg,

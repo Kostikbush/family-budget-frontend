@@ -30,14 +30,20 @@ export const Alert = ({
   return (
     <CSSTransition
       timeout={200}
-      classNames={"alert-anime"}
+      classNames={"app-alert-anime"}
       in={vei}
       unmountOnExit
     >
-      <section className={`alert-container-${type} alert-container`}>
-        {type === "error" && <h2 className="alert-h2-error">Ошибка</h2>}
-        {type === "alert" && <h2 className="alert-h2-alert">Уведомление</h2>}
-        {type === "success" && <h2 className="alert-h2-success">Успешно</h2>}
+      <section className={`app__alert-container-${type} app__alert-container`}>
+        {type === "error" && (
+          <h2 className="app-alert-container__h2 h2-error">Ошибка</h2>
+        )}
+        {type === "alert" && (
+          <h2 className="app-alert-container__h2 h2-alert">Уведомление</h2>
+        )}
+        {type === "success" && (
+          <h2 className="app-alert-container__h2 h2-success">Успешно</h2>
+        )}
         <p>{message}</p>
         {children}
 

@@ -37,7 +37,7 @@ export const Btn = ({
     setTimeout(() => {
       setVieWave(false);
       setDataVue({});
-    }, 500);
+    }, 300);
   };
   return (
     <>
@@ -62,6 +62,12 @@ export const Btn = ({
         <button className="btn">
           {text}
           {children}
+          {vieWave && (
+            <span
+              style={dataStyle}
+              className={`pulse pulse-${waveColor}`}
+            ></span>
+          )}
         </button>
       )}
     </>

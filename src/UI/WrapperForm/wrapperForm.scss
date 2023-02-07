@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 
-.form-container-error {
+.app-form-container-error {
   position: relative;
   height: 70%;
   max-height: 450px;
@@ -36,7 +36,7 @@
   max-width: 500px;
   overflow: hidden;
 }
-.form-container-error .form-container-error-stroke {
+.app-form-container-error .app-form-container-error__stroke {
   transition: 0.3s ease-in-out;
   position: absolute;
   height: 0%;

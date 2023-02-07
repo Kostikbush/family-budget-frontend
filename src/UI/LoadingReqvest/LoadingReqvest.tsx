@@ -1,4 +1,4 @@
 import "./loadingreq.scss";
 export const LoadingReqvest = () => {
-  return <div className="loading-on-all-page"></div>;
+  return <div className="app-awaite-data"></div>;
 };

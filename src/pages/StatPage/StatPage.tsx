@@ -1,16 +1,15 @@
 import { useEffect } from "react";
 import { ChangeBgPages } from "../../CONST/CONST";
 import { changeBody } from "../../helpersFunc/changeBody";
-import "./home.scss";
-
-export const HomePage = () => {
+import "./statPage.scss";
+export const StatPage = () => {
   useEffect(() => {
-    changeBody(ChangeBgPages.HOME);
+    changeBody(ChangeBgPages.STAT);
   }, []);
   return (
-    <section className="app-home-page-bg page-bg-move">
-      <article className="app-home-page-content page-content-move">
-        <h1>Дом</h1>
+    <section className="page-bg-stat page-bg-move">
+      <article className="page-content-move">
+        <h2>Статистика</h2>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima,
           veniam illum consequatur rerum dicta vel dolor repellendus incidunt

@@ -3,7 +3,7 @@ import { LoadingReqvest } from "../LoadingReqvest/LoadingReqvest";
 
 import "./wrapperForm.scss";
 
-interface FormProps {
+interface WrapperFormProps {
   children: ReactNode;
   errorValidation: boolean;
   isLoadingReq?: boolean;
@@ -13,14 +13,18 @@ export const WrapperForm = ({
   errorValidation,
   children,
   isLoadingReq = false,
-}: FormProps) => {
+}: WrapperFormProps) => {
   return (
     <article
-      className={errorValidation ? "form-container-error" : "form-container"}
+      className={
+        errorValidation ? "app-form-container-error" : "form-container"
+      }
     >
       {isLoadingReq && <LoadingReqvest />}
       {children}
-      {errorValidation && <span className="form-container-error-stroke"></span>}
+      {errorValidation && (
+        <span className="app-form-container-error__stroke"></span>
+      )}
     </article>
   );
 };

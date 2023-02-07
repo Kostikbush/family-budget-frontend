@@ -2,20 +2,20 @@
 
 exports[`Test Login Page LoginPage vie 1`] = `
 <form
-  class="form-container__enter"
+  class="app-login-page-forms__form"
   data-testid="form-enter-snap"
 >
   <h2>
     Вход
   </h2>
   <div
-    class="enter__inputs"
+    class="app-login-page-forms-form-registration-input"
   >
     <div
-      class="input-wrapper"
+      class="input-wrapper input-wrapper-color-login"
     >
       <input
-        class="input-wrapper__input-from"
+        class="input-wrapper__input-from input-color-login"
         placeholder="Введите email"
         type="text"
         value=""
@@ -25,10 +25,10 @@ exports[`Test Login Page LoginPage vie 1`] = `
       />
     </div>
     <div
-      class="input-wrapper"
+      class="input-wrapper input-wrapper-color-login"
     >
       <input
-        class="input-wrapper__input-from"
+        class="input-wrapper__input-from input-color-login"
         placeholder="Введите пароль"
         type="password"
         value=""
@@ -56,7 +56,7 @@ exports[`Test Login Page LoginPage vie 1`] = `
     </div>
   </div>
   <div
-    class="enter__btns"
+    class="app-login-page-forms-form__btns"
   >
     <button
       class="btn"

@@ -1,13 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUserDataAftorization } from "../../models/IActionPaylod";
-import { savedIndexDB } from "../../saved-indexDB/saved";
+import { savedIndexDB } from "../../helpersFunc/saved";
 import { RootState } from "../store";
 
 const initialState: IUserDataAftorization = {
   name: "",
   email: "",
   password: "",
-  status: "loading",
 };
 
 export const userAftorasationSlice = createSlice({
@@ -30,12 +29,10 @@ export const userAftorasationSlice = createSlice({
       };
       savedIndexDB(dataUser);
     },
-    registration(state, action) {},
-    enter(state, action) {},
   },
 });
 
-export const { dataUserSaveStore, enter, registration, savedDataUser } =
+export const { dataUserSaveStore, savedDataUser } =
   userAftorasationSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

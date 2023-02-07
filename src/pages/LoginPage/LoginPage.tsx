@@ -3,11 +3,11 @@ import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { useNavigate } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 
-import { validateValue } from "../../controlFunc/validateValue";
-import { WrapperForm } from "../../Components/WrapperForm/WrapperForm";
-import { InputForm } from "../../Components/InputForm/InputForm";
-import { Btn } from "../../Components/Btn/Btn";
-import { Alert } from "../../Components/Alert/Alert";
+import { validateValue } from "../../helpersFunc/validateValue";
+import { WrapperForm } from "../../UI/WrapperForm/WrapperForm";
+import { InputForm } from "../../UI/InputForm/InputForm";
+import { Btn } from "../../UI/Btn/Btn";
+import { Alert } from "../../UI/Alert/Alert";
 import {
   useLoginUserMutation,
   useRegistUserMutation,
@@ -19,9 +19,11 @@ import {
   savedDataUser,
 } from "../../store/reducers/UserAftorasationSlice";
 import { isErrorWithMessage } from "../../models/IErrorBackend";
-import { Form } from "../../Components/Form/Form";
+import { Form } from "../../UI/Form/Form";
 import "./login.scss";
-import { getDataFromIndexDB } from "../../saved-indexDB/saved";
+import { getDataFromIndexDB } from "../../helpersFunc/saved";
+import { changeBody } from "../../helpersFunc/changeBody";
+import { ChangeBgPages } from "../../CONST/CONST";
 
 export const LoginPage = () => {
   let navigate = useNavigate();
@@ -33,7 +35,7 @@ export const LoginPage = () => {
   const [errorsValidations, setErrorsValidations] = useState<string[]>([]);
   const [isErrorFromBackend, setIsErrorFromBackend] = useState(false);
   const [isLoadingRespFromBack, setIsLoadingRespFromBack] = useState(false);
-  const [isExitLoginPage, setIsExitLoginPage] = useState(false);
+  const [isOffline, setIsOffline] = useState(false);
   const [
     loginUser,
     {
@@ -55,12 +57,28 @@ export const LoginPage = () => {
   ] = useRegistUserMutation();
   ////////////////////////////===================================
 
-  /////////////////////////////-----------------------------------
+  /////////////////////////////==================================
   const authData = useAppSelectore((state) => state.ayth);
   const dispatch = useAppDispatch();
   useEffect(() => {
     getDataFromIndexDB(dispatch, dataUserSaveStore);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    changeBody(ChangeBgPages.LOGIN);
+    const checkOnlineStatus = async () => {
+      try {
+        const online = await fetch(
+          "https://jsonplaceholder.typicode.com/todos/1"
+        );
+        if (online.status >= 200 && online.status < 300) {
+          setIsOffline(false);
+        } else {
+          setIsOffline(true);
+        }
+      } catch (err) {
+        setIsOffline(true);
+      }
+    };
+    checkOnlineStatus();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleClickChangeForm = () => {
     setIsVieEnterForm(!isVieEnterForm);
@@ -75,7 +93,6 @@ export const LoginPage = () => {
     ];
     setErrorsValidations([...errors]);
     errors.length && setIsErrorValidation(true);
-
     !errors.length && (await loginUser({ email: email, password: password }));
   };
   const handleRegistration = async () => {
@@ -107,7 +124,7 @@ export const LoginPage = () => {
   }, [isLoginLoading, isLoadingRegistration]);
 
   useMemo(() => {
-    if (authData.name !== "") {
+    if (authData.name.trim() !== "") {
       setEmail(authData.email);
       setName(authData.name);
       setPassword(authData.password);
@@ -116,14 +133,14 @@ export const LoginPage = () => {
   useMemo(() => {
     if (dataRegistration) {
       dispatch(savedDataUser({ name, email, password }));
-      setIsExitLoginPage(true);
-      console.log("registration");
       setTimeout(() => {
         navigate("/hello");
       }, 700);
     }
     if (loginData) {
-      setIsExitLoginPage(true);
+      if (authData.name.trim() === "") {
+        dispatch(savedDataUser({ name: loginData.user.name, email, password }));
+      }
       setTimeout(() => {
         navigate("/hello");
       }, 400);
@@ -131,45 +148,50 @@ export const LoginPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataRegistration, loginData]);
   return (
-    <section className={isExitLoginPage ? "page-exit" : "page-enter"}>
+    <>
       <main
-        className={isErrorValidation ? `login-page page-blur` : "login-page"}
+        className={
+          isErrorValidation ? `app__login-page page-blur` : "app__login-page"
+        }
       >
         <section className="container">
-          <div className="login-page__forms">
+          <div className="app-login-page-forms">
             <WrapperForm
               isLoadingReq={isLoadingRespFromBack}
               errorValidation={isErrorValidation}
             >
               <SwitchTransition mode="out-in">
                 <CSSTransition
-                  timeout={350}
-                  classNames="form-change"
+                  timeout={300}
+                  classNames="change-form-loginPgae"
                   key={isVieEnterForm ? "1" : "2"}
                   in={isVieEnterForm}
-                  unmountOnExit
                 >
                   {isVieEnterForm ? (
                     <Form
                       testID="form-enter-snap"
-                      styles="form-container__enter"
+                      styles="app-login-page-forms__form"
                     >
                       <h2>Вход</h2>
-                      <div className="enter__inputs">
+                      <div className="app-login-page-forms-form-registration-input">
                         <InputForm
+                          colorInput="input-color-login"
+                          colorWrapper="input-wrapper-color-login"
                           value={email}
                           placeholder="Введите email"
                           type="text"
                           setState={setEmail}
                         />
                         <InputForm
+                          colorInput="input-color-login"
+                          colorWrapper="input-wrapper-color-login"
                           value={password}
                           placeholder="Введите пароль"
                           type="password"
                           setState={setPassword}
                         />
                       </div>
-                      <div className="enter__btns">
+                      <div className="app-login-page-forms-form__btns">
                         <Btn
                           type="submit"
                           isReqvest={isLoginLoading}
@@ -188,26 +210,32 @@ export const LoginPage = () => {
                       </div>
                     </Form>
                   ) : (
-                    <Form styles="form-container__enter">
+                    <Form styles="app-login-page-forms__form">
                       <h2 data-testid="h2-registration">Регистрация</h2>
-                      <div className="registration__inputs">
+                      <div className="app-login-page-forms-form__inputs">
                         <InputForm
+                          colorInput="input-color-login"
+                          colorWrapper="input-wrapper-color-login"
                           placeholder="Введите имя"
                           type="text"
                           setState={setName}
                         />
                         <InputForm
+                          colorInput="input-color-login"
+                          colorWrapper="input-wrapper-color-login"
                           placeholder="Введите email"
                           type="text"
                           setState={setEmail}
                         />
                         <InputForm
+                          colorInput="input-color-login"
+                          colorWrapper="input-wrapper-color-login"
                           placeholder="Введите пароль"
                           type="password"
                           setState={setPassword}
                         />
                       </div>
-                      <div className="enter__btns">
+                      <div className="app-login-page-forms-form__btns">
                         <Btn
                           isReqvest={isLoadingRegistration}
                           handleClick={handleRegistration}
@@ -237,7 +265,7 @@ export const LoginPage = () => {
           message="У вас есть неправильные заполненные поля"
           type="error"
         >
-          <ul className="error-login">
+          <ul className="app-error-login">
             {errorsValidations.map((error, i) => (
               <li key={i}>
                 <span>{error}</span>
@@ -245,6 +273,14 @@ export const LoginPage = () => {
             ))}
           </ul>
         </Alert>
+      )}
+      {isOffline && (
+        <Alert
+          value={isOffline}
+          handleValue={setIsOffline}
+          message="У вас нет поключения к интернету"
+          type="error"
+        ></Alert>
       )}
       {isErrorFromBackend && (
         <Alert
@@ -254,7 +290,7 @@ export const LoginPage = () => {
           type="error"
         >
           {isVieEnterForm && loginError && "data" in loginError && (
-            <ul className="error-login">
+            <ul className="app-error-login">
               <li>
                 <span>
                   {isErrorWithMessage(loginError) &&
@@ -267,14 +303,14 @@ export const LoginPage = () => {
           {!isVieEnterForm &&
             errorRegistration &&
             "data" in errorRegistration && (
-              <ul className="error-login">
-                <li className="error-reg">
+              <ul className="app-error-login">
+                <li className="app-error-login__error-reg">
                   <span>
                     {isErrorWithMessage(errorRegistration) &&
                       // eslint-disable-next-line no-useless-concat
                       errorRegistration.data.message + ". " + " Испрвте поля:"}
                   </span>
-                  <span className="errors-list">
+                  <span className="app-error-login-error-reg__errors-list">
                     {isErrorWithMessage(errorRegistration) &&
                       errorRegistration.data.errors.map((objError) => (
                         <span>{objError.param}</span>
@@ -285,6 +321,6 @@ export const LoginPage = () => {
             )}
         </Alert>
       )}
-    </section>
+    </>
   );
 };
