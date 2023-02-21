@@ -9,8 +9,15 @@ interface btnProps {
   isReqvest?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
   testId?: string;
+  border?:
+    | "border-red"
+    | "border-blue"
+    | "border-pinc"
+    | "border-yellow"
+    | "border-green"
+    | "border-violet";
+  style?: object;
 }
-
 export const Btn = ({
   text,
   handleClick,
@@ -19,6 +26,8 @@ export const Btn = ({
   isReqvest = false,
   type,
   testId = "",
+  border = "border-pinc",
+  style,
 }: btnProps) => {
   const [vieWave, setVieWave] = useState(false);
   const [dataStyle, setDataVue] = useState({});
@@ -43,10 +52,11 @@ export const Btn = ({
     <>
       {!isReqvest ? (
         <button
+          style={style}
           data-testid={testId}
           type={type}
           onClick={handleBtnClick}
-          className="btn"
+          className={`btn ${border}`}
         >
           {text}
           <span className="btn__stroke"></span>
@@ -59,7 +69,7 @@ export const Btn = ({
           {children}
         </button>
       ) : (
-        <button className="btn">
+        <button style={style} className={`btn ${border}`}>
           {text}
           {children}
           {vieWave && (

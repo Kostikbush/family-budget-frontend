@@ -8,7 +8,7 @@ export const ExpensPage = () => {
     changeBody(ChangeBgPages.EXPENS);
   }, []);
   return (
-    <section className="page-bg-expens page-bg-move">
+    <section className="page-bg-move">
       <article className="page-content-move">
         <h2>Расходы</h2>
         <p>

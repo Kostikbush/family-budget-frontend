@@ -13,7 +13,8 @@
   padding: 10px;
   align-items: center;
   justify-content: space-around;
-  background: $bgEl;
+  background-color: #b8196350;
+  z-index: 101;
 
   & p {
     text-align: center;
@@ -29,10 +30,21 @@
 .app__alert-container-error {
   @include shadowErr();
 }
+.app__alert-container-alert {
+  box-shadow: 0px 0px 8px 1px rgba(248, 255, 0, 0.36);
+}
+.app__alert-container-success {
+  box-shadow: 0px 0px 8px 1px rgba(0, 255, 26, 0.36);
+}
 .h2-error {
   color: $colorTextError;
 }
-
+.h2-alert {
+  color: rgba(248, 255, 0);
+}
+.h2-success {
+  color: rgb(0, 255, 26);
+}
 //-enter-active -exit-activ
 .app-alert-anime-enter {
   transform: scale(0);
@@ -51,22 +63,13 @@
 .alert-btn-wrapper {
   max-width: 150px;
 }
-@media (max-height: 400px) {
+@media (max-height: 500px) {
   .app__alert-container {
-    width: 280px;
-    height: 300px;
-    top: calc(50% - 300px / 2);
+    top: calc(50% - 300px / 3);
     left: calc(50% - 280px / 2);
-    & p {
-      line-height: 20px;
-      font-size: 12px;
-    }
-
-    & h2 {
-      font-size: 15px;
-    }
   }
 }
+
 @media (max-width: 350px) {
   .app__alert-container {
     width: 180px;
@@ -74,19 +77,27 @@
     top: calc(50% - 180px / 2);
     left: calc(50% - 200px / 2);
     & p {
-      line-height: 15px;
-      font-size: 10px;
+      line-height: 18px;
+      font-size: 14px;
     }
 
     & h2 {
-      font-size: 13px;
+      font-size: 14px;
     }
     & li {
       & span {
-        font-size: 10px;
-        line-height: 14px;
+        font-size: 14px;
+        line-height: 18px;
         padding: 2px;
       }
     }
+  }
+}
+@media (min-height: 400px) {
+  .app__alert-container {
+    width: 280px;
+    height: 350px;
+    top: calc(50% - 300px / 2);
+    left: calc(50% - 280px / 2);
   }
 }

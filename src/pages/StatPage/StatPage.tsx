@@ -7,7 +7,7 @@ export const StatPage = () => {
     changeBody(ChangeBgPages.STAT);
   }, []);
   return (
-    <section className="page-bg-stat page-bg-move">
+    <section className="page-bg-move">
       <article className="page-content-move">
         <h2>Статистика</h2>
         <p>

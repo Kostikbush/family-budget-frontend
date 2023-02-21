@@ -9,6 +9,7 @@ import { HelloPage } from "./pages/HelloPage/HelloPage";
 import "./zero.scss";
 import "./App.scss";
 import { HeaderInfo } from "./Components/HeaderInfo/HeaderInfo";
+import { Alert } from "./UI/Alert/Alert";
 
 const HomePage = React.lazy(() =>
   import("./pages/HomePage/HomePage").then(({ HomePage }) => ({
@@ -56,6 +57,11 @@ const CreateBudgetPage = React.lazy(() =>
       default: CreateBudgetPage,
     })
   )
+);
+const CommentPage = React.lazy(() =>
+  import("./pages/CommentPage/CommentPage").then(({ CommentPage }) => ({
+    default: CommentPage,
+  }))
 );
 const routes = [
   {
@@ -130,6 +136,12 @@ const routes = [
     element: <CreateBudgetPage />,
     nodeRef: createRef(),
   },
+  {
+    path: "/home/comment",
+    name: "CommentPage",
+    element: <CommentPage />,
+    nodeRef: createRef(),
+  },
 ];
 
 export const router = createBrowserRouter([
@@ -146,30 +158,29 @@ export const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [vieNav, setVieNav] = useState(false);
+  const [vieInfo, setVieInfo] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const currentOutlet = useOutlet();
   const { nodeRef } =
     routes.find((route) => route.path === location.pathname) ?? {};
-  useMemo(() => {
-    if (
-      location.pathname === "/" ||
-      location.pathname === "/hello" ||
-      location.pathname === "/login"
-    ) {
-      setVieNav(false);
-    } else {
-      setVieNav(true);
-    }
-  }, [location.pathname]);
+  useMemo(() => {}, []);
   useEffect(() => {
     navigate("/login");
   }, []);
+  const handleOver = (e: React.MouseEvent) => {
+    e.preventDefault();
+  };
   return (
-    <section className={`${vieNav && "app__wrapper"}`}>
-      {vieNav && <HeaderInfo />}
-      {vieNav && <NavMenu />}
+    <section onDragOver={(e) => handleOver(e)} onDrag={(e) => handleOver(e)}>
+      {location.pathname !== "/" &&
+        location.pathname !== "/hello" &&
+        location.pathname !== "/login" && (
+          <HeaderInfo setVieInfo={setVieInfo} />
+        )}
+      {location.pathname !== "/" &&
+        location.pathname !== "/hello" &&
+        location.pathname !== "/login" && <NavMenu />}
       <>
         <SwitchTransition mode="out-in">
           <CSSTransition
@@ -197,7 +208,11 @@ function App() {
                 }
               >
                 <div
-                  className="app__wrapper-page"
+                  className={
+                    vieInfo
+                      ? "app__wrapper-page page-blur"
+                      : "app__wrapper-page"
+                  }
                   ref={nodeRef as React.RefObject<HTMLDivElement>}
                 >
                   {currentOutlet}
@@ -207,6 +222,21 @@ function App() {
           </CSSTransition>
         </SwitchTransition>
       </>
+      {vieInfo && (
+        <Alert handleValue={setVieInfo} type={"alert"} value={vieInfo}>
+          <article className="app-header-list-blockInfo">
+            <p className="app-header-list-blockInfo__text">
+              Это приложение было создано для внедрения в семейные пары
+              контракта, который бы смог снизить к нулю распри на тему финансов.
+              Для корректной работы приложения придётся вписывать все движения
+              ваших общих финансов. Даже если вы практикуете личные раздельные
+              расходы, то укажите их как отдельную статью расходов. Обязательно
+              указывайте каждое изменение чтоб приложение могло вовремя
+              отреагировать на недопустимые расходы! Приятного использования.
+            </p>
+          </article>
+        </Alert>
+      )}
     </section>
   );
 }

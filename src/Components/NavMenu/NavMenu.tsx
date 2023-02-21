@@ -8,137 +8,255 @@ import { GiExpense } from "react-icons/gi";
 import { BsFillChatSquareTextFill } from "react-icons/bs";
 import { RiAccountPinCircleLine } from "react-icons/ri";
 import { GiWallet } from "react-icons/gi";
+import { AiOutlineLine } from "react-icons/ai";
+import { TfiCommentsSmiley } from "react-icons/tfi";
 
 import "./navMenu.scss";
+import { useGetBudgetMutation } from "../../service/budgetApi";
+import { useAppSelectore } from "../../hooks/redux";
 
 const routes = [
   {
-    key: 1,
     lingWay: "/home/stat",
     contentText: "Статистика",
-    img: <ImStatsDots size={20} color="white" />,
+    img: <ImStatsDots className="link-svg" size={20} color="white" />,
     style: "link link-color-stat",
     styleActive: "active-link-stat link link-color-stat",
     styleContent: "link-content link-content-stat",
   },
   {
-    key: 2,
     lingWay: "/home/aim",
     contentText: "Цели",
-    img: <AiOutlineAim size={20} color="white" />,
+    img: <AiOutlineAim className="link-svg" size={20} color="white" />,
     style: "link link-color-aim",
     styleActive: "active-link-aim link link-color-aim",
     styleContent: "link-content link-content-aim",
   },
   {
-    key: 3,
     lingWay: "/home/settingIncoms",
     contentText: "Управление доходами",
-    img: <MdOutlineAttachMoney size={20} color="white" />,
+    img: <MdOutlineAttachMoney className="link-svg" size={20} color="white" />,
     style: "link link-color-incom",
     styleActive: "active-link-incom link link-color-incom",
     styleContent: "link-content link-content-incom",
   },
   {
-    key: 4,
     lingWay: "/home/settingExpens",
     contentText: "Управление расходами",
-    img: <GiExpense size={22} color="white" />,
+    img: <GiExpense className="link-svg" size={22} color="white" />,
     style: "link link-color-expens",
     styleActive: "active-link-expens link link-color-expens",
     styleContent: "link-content link-content-expens",
   },
   {
-    key: 5,
     lingWay: "/home/chat",
     contentText: "Чат",
-    img: <BsFillChatSquareTextFill size={22} color="white" />,
+    img: (
+      <BsFillChatSquareTextFill className="link-svg" size={22} color="white" />
+    ),
     style: "link link-color-chat",
     styleActive: "active-link-chat link link-color-chat",
     styleContent: "link-content link-content-chat",
   },
 ];
-//interface navMenuProps {}
 
 export const NavMenu = () => {
-  const [isBudget, setIsBudget] = useState(false);
+  const [isDragDrop, setIsDragDrop] = useState(false);
+  const [styleMoveNavMenu, setStyleMoveNavMenu] = useState({
+    top: "20%",
+    left: "0",
+  });
+  const [activeMenu, setActiveMenu] = useState(false);
+  const authData = useAppSelectore((state) => state.ayth);
+  const [getBudget, { data }] = useGetBudgetMutation();
   const location = useLocation();
   useEffect(() => {
-    setIsBudget(false);
+    getBudget({ email: authData.email });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleDragEndMoveMenu = (e: React.DragEvent) => {
+    e.preventDefault();
+    setStyleMoveNavMenu({
+      top: `${e.pageY}px`,
+      left: `${e.pageX}px`,
+    });
+    setIsDragDrop(false);
+  };
+  const handleDragLMoveMenu = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragDrop(true);
+  };
   return (
-    <section className="app-nav__wrapper">
-      <nav className="app-nav-menu">
-        <>
-          <NavLink
-            key={22}
-            className={
-              location.pathname === "/home"
-                ? `active-link-home link link-color-home`
-                : "link link-color-home"
-            }
-            to={"/home"}
-          >
-            <div className="link-content link-content-home">
-              <AiOutlineHome size={20} color="white" />
-              <span>Главная</span>
+    <article className={isDragDrop ? "dis-none" : "dis-vei"}>
+      <section
+        style={styleMoveNavMenu}
+        draggable="true"
+        onDragLeave={(e) => handleDragLMoveMenu(e)}
+        onDragEnd={(e) => handleDragEndMoveMenu(e)}
+        className={
+          activeMenu ? "app-nav__wrapper" : "app-nav__wrapper-disabled"
+        }
+      >
+        <nav className={activeMenu ? "app-nav-menu" : "app-nav-menu-disabled"}>
+          <>
+            <div
+              onClick={() => setActiveMenu(!activeMenu)}
+              className={
+                activeMenu ? "nav-control" : "nav-control  nav-control-active"
+              }
+            >
+              <AiOutlineLine
+                height={4}
+                color="white"
+                className={
+                  activeMenu
+                    ? "nav-menu-line-one-active nuv-line"
+                    : "nav-menu-line-one nuv-line"
+                }
+                // size={10}
+              />
+              <AiOutlineLine
+                color="white"
+                className={
+                  activeMenu
+                    ? "nav-menu-line-two-active nuv-line"
+                    : "nav-menu-line-two nuv-line"
+                }
+                height={4}
+                // size={10}
+              />
+              <AiOutlineLine
+                height={4}
+                color="white"
+                className={
+                  activeMenu
+                    ? "nav-menu-line-three-active nuv-line"
+                    : "nav-menu-line-three nuv-line"
+                }
+                // size={10}
+              />
             </div>
-          </NavLink>
-          <NavLink
-            key={26}
-            className={
-              location.pathname === "/home/createBudget"
-                ? `active-link-createBudget link link-color-createBudget`
-                : "link link-color-createBudget"
-            }
-            to={"/home/createBudget"}
-          >
-            <div className="link-content link-content-createBudget">
-              <GiWallet size={20} color="white" />
-              <span>Создать бюджет</span>
+            <div
+              className={activeMenu ? "link-active link" : "link-disabled link"}
+            >
+              <NavLink
+                className={
+                  location.pathname === "/home"
+                    ? `active-link-home link-color-home`
+                    : "link-color-home"
+                }
+                to={"/home"}
+              >
+                <div className="link-content link-content-home">
+                  <AiOutlineHome className="link-svg" size={20} color="white" />
+                  <span>Главная</span>
+                </div>
+              </NavLink>
             </div>
-          </NavLink>
-          {routes.map((link) => (
-            <>
-              {isBudget ? (
+            {data ? null : (
+              <div
+                className={
+                  activeMenu ? "link-active link" : "link-disabled link"
+                }
+              >
                 <NavLink
-                  key={link.key}
-                  className={({ isActive }) =>
-                    isActive ? `${link.styleActive}` : "link link-color-stat"
+                  className={
+                    location.pathname === "/home/createBudget"
+                      ? `active-link-createBudget link-color-createBudget`
+                      : "link-color-createBudget"
                   }
-                  to={link.lingWay}
+                  to={"/home/createBudget"}
                 >
-                  <div className={link.styleContent}>
-                    {link.img}
-                    <span>{link.contentText}</span>
+                  <div className="link-content link-content-createBudget">
+                    <GiWallet className="link-svg" size={20} color="white" />
+                    <span>Создать бюджет</span>
                   </div>
                 </NavLink>
-              ) : (
-                <button key={link.lingWay} className="link have-not-budget">
-                  <div className={link.styleContent}>
-                    {link.img}
-                    <span>{link.contentText}</span>
-                  </div>
-                </button>
-              )}
-            </>
-          ))}
-          <NavLink
-            key={90}
-            className={
-              location.pathname === "/home/account"
-                ? `active-link-account link link-color-account`
-                : "link link-color-account"
-            }
-            to={"/home/account"}
-          >
-            <div className="link-content link-content-account">
-              <RiAccountPinCircleLine size={20} color="white" />
-              <span>Аккаунт</span>
+              </div>
+            )}
+            {routes.map((link, i) => (
+              <div
+                className={
+                  activeMenu ? "link-active link" : " link link-disabled"
+                }
+                key={i}
+              >
+                {data ? (
+                  <NavLink
+                    key={i}
+                    className={({ isActive }) =>
+                      isActive ? `${link.styleActive}` : "link link-color-stat"
+                    }
+                    to={link.lingWay}
+                  >
+                    <div className={link.styleContent}>
+                      {link.img}
+                      <span>{link.contentText}</span>
+                    </div>
+                  </NavLink>
+                ) : (
+                  <button
+                    key={i + 20}
+                    className={
+                      activeMenu
+                        ? "link have-not-budget link-active"
+                        : "link have-not-budget link-disabled"
+                    }
+                  >
+                    <div className={link.styleContent}>
+                      {link.img}
+                      <span>{link.contentText}</span>
+                    </div>
+                  </button>
+                )}
+              </div>
+            ))}
+            <div
+              className={activeMenu ? "link-active link" : "link-disabled link"}
+            >
+              <NavLink
+                className={
+                  location.pathname === "/home/account"
+                    ? `active-link-account link-color-account`
+                    : "link-color-account"
+                }
+                to={"/home/account"}
+              >
+                <div className="link-content link-content-account">
+                  <RiAccountPinCircleLine
+                    className="link-svg"
+                    size={20}
+                    color="white"
+                  />
+                  <span>Аккаунт</span>
+                </div>
+              </NavLink>
             </div>
-          </NavLink>
-        </>
-      </nav>
-    </section>
+            <div
+              className={activeMenu ? "link-active link" : "link-disabled link"}
+            >
+              <NavLink
+                className={
+                  location.pathname === "/home/comment"
+                    ? `active-link-comment link-color-comment`
+                    : "link-color-comment"
+                }
+                to={"/home/comment"}
+              >
+                <div className="link-content link-content-comment">
+                  <TfiCommentsSmiley
+                    className="link-svg"
+                    size={20}
+                    color="white"
+                  />
+                  <span>Оставить отзыв</span>
+                </div>
+              </NavLink>
+            </div>
+          </>
+        </nav>
+      </section>
+    </article>
   );
 };

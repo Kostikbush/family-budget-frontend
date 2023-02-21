@@ -1,10 +1,10 @@
-import { IUserDataAftorization } from "../models/IActionPaylod";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { IUser } from "../models/IUser";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 let idbSupported = false;
 let db: IDBDatabase;
 
-export const savedIndexDB = (aftorasationData: IUserDataAftorization) => {
+export const savedIndexDB = (aftorasationData: IUser) => {
   const aftorasationSaved = "aftorasationSaved";
 
   function indexedDBOk() {
@@ -30,18 +30,20 @@ export const savedIndexDB = (aftorasationData: IUserDataAftorization) => {
     request.onerror = function (e: any) {
       console.log("Error", e.target.error);
     };
-    //request.onsuccess = function (e: any) {};
   };
 
   openRequest.onerror = function (e: any) {
     console.log("error");
   };
 };
-
+//////////////////////////////////
 export const getDataFromIndexDB = (func: Function, fun: Function) => {
   let name: string = "";
   let email: string = "";
   let password: string = "";
+  let alert: Array<{}> = [];
+  let avatar: string = "";
+  let isSetComment: boolean = false;
   function indexedDBOk() {
     idbSupported = true;
     return "indexedDB" in window;
@@ -74,7 +76,10 @@ export const getDataFromIndexDB = (func: Function, fun: Function) => {
         name = value.name.slice(value.name.lenght);
         email = value.email.slice(value.email.lenght);
         password = value.password.slice(value.password.lenght);
-        func(fun({ name, email, password }));
+        alert = value.alert || [];
+        avatar = value.avatar || "";
+        isSetComment = value.isSetComment || false;
+        func(fun({ name, email, password, alert, avatar, isSetComment }));
       }
     };
     openRequest.onerror = function () {
@@ -88,8 +93,14 @@ export const getDataFromIndexDB = (func: Function, fun: Function) => {
   };
   return data;
 };
-// return new Promise((resolve) => {
-//   if (cursor !== null) {
-//     resolve({ data: cursor.value });
-//   }
-// });
+
+export const deleteDataBaseIndexDb = () => {
+  const request = indexedDB.open("aftorasationSaved");
+  request.onsuccess = function (event: any) {
+    const db = event.target.result;
+
+    const transaction = db.transaction(["aftorasationSaved"], "readwrite");
+    const objectStore = transaction.objectStore("aftorasationSaved");
+    objectStore.clear();
+  };
+};

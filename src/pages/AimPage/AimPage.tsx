@@ -7,7 +7,7 @@ export const AimPage = () => {
     changeBody(ChangeBgPages.AIM);
   }, []);
   return (
-    <section className="page-bg-aim page-bg-move">
+    <section className="page-bg-move">
       <article className="page-content-move">
         <h2>Цели</h2>
         <p>

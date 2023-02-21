@@ -24,17 +24,16 @@ import "./login.scss";
 import { getDataFromIndexDB } from "../../helpersFunc/saved";
 import { changeBody } from "../../helpersFunc/changeBody";
 import { ChangeBgPages } from "../../CONST/CONST";
+import { LoadingReqvest } from "../../UI/LoadingReqvest/LoadingReqvest";
 
 export const LoginPage = () => {
   let navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isErrorValidation, setIsErrorValidation] = useState(false);
   const [isVieEnterForm, setIsVieEnterForm] = useState(true);
+  const [isBluerPage, setIsBluerPage] = useState(false);
   const [errorsValidations, setErrorsValidations] = useState<string[]>([]);
-  const [isErrorFromBackend, setIsErrorFromBackend] = useState(false);
-  const [isLoadingRespFromBack, setIsLoadingRespFromBack] = useState(false);
   const [isOffline, setIsOffline] = useState(false);
   const [
     loginUser,
@@ -72,9 +71,11 @@ export const LoginPage = () => {
           setIsOffline(false);
         } else {
           setIsOffline(true);
+          setIsBluerPage(true);
         }
       } catch (err) {
         setIsOffline(true);
+        setIsBluerPage(true);
       }
     };
     checkOnlineStatus();
@@ -92,7 +93,7 @@ export const LoginPage = () => {
       ...validateValue(password, "password"),
     ];
     setErrorsValidations([...errors]);
-    errors.length && setIsErrorValidation(true);
+    errors.length && setIsBluerPage(true);
     !errors.length && (await loginUser({ email: email, password: password }));
   };
   const handleRegistration = async () => {
@@ -102,26 +103,10 @@ export const LoginPage = () => {
       ...validateValue(name, "name"),
     ];
     setErrorsValidations([...errors]);
-    errors.length && setIsErrorValidation(true);
+    errors.length && setIsBluerPage(true);
 
     !errors.length && (await registrationUser({ name, email, password }));
   };
-  useMemo(() => {
-    if (isErrorValidation === false) {
-      setErrorsValidations([]);
-    }
-  }, [isErrorValidation]);
-  useMemo(() => {
-    isLoginError && setIsErrorFromBackend(true);
-    isErrorRegistration && setIsErrorFromBackend(true);
-  }, [isLoginError, isErrorRegistration]);
-  useMemo(() => {
-    isLoginLoading && setIsLoadingRespFromBack(true);
-    isLoadingRegistration && setIsLoadingRespFromBack(true);
-    if (isLoginLoading === false && isLoadingRegistration === false) {
-      setIsLoadingRespFromBack(false);
-    }
-  }, [isLoginLoading, isLoadingRegistration]);
 
   useMemo(() => {
     if (authData.name.trim() !== "") {
@@ -129,37 +114,55 @@ export const LoginPage = () => {
       setName(authData.name);
       setPassword(authData.password);
     }
-  }, [authData]);
+  }, [authData.email, authData.name, authData.password]);
   useMemo(() => {
     if (dataRegistration) {
-      dispatch(savedDataUser({ name, email, password }));
+      dispatch(
+        savedDataUser({
+          name,
+          email,
+          password,
+          id: "",
+          avatar: "",
+          alert: [],
+          isSetComment: dataRegistration.user.isSetComment,
+        })
+      );
       setTimeout(() => {
         navigate("/hello");
       }, 700);
     }
     if (loginData) {
-      if (authData.name.trim() === "") {
-        dispatch(savedDataUser({ name: loginData.user.name, email, password }));
-      }
+      dispatch(
+        savedDataUser({
+          name: loginData.user.name,
+          email,
+          password,
+          id: "",
+          avatar: loginData.user.avatar,
+          alert: loginData.user.alert,
+          isSetComment: loginData.user.isSetComment,
+        })
+      );
       setTimeout(() => {
         navigate("/hello");
       }, 400);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataRegistration, loginData]);
+  const handleResetError = () => {
+    setIsBluerPage(false);
+    setErrorsValidations([]);
+    setIsOffline(false);
+  };
   return (
     <>
-      <main
-        className={
-          isErrorValidation ? `app__login-page page-blur` : "app__login-page"
-        }
-      >
+      <main className={isBluerPage ? `page-blur` : "app__login-page"}>
         <section className="container">
           <div className="app-login-page-forms">
-            <WrapperForm
-              isLoadingReq={isLoadingRespFromBack}
-              errorValidation={isErrorValidation}
-            >
+            <WrapperForm errorValidation={errorsValidations.length > 0}>
+              {isLoadingRegistration && <LoadingReqvest />}
+              {isLoginLoading && <LoadingReqvest />}
               <SwitchTransition mode="out-in">
                 <CSSTransition
                   timeout={300}
@@ -258,10 +261,9 @@ export const LoginPage = () => {
           </div>
         </section>
       </main>
-      {isErrorValidation && (
+      {errorsValidations.length > 0 && (
         <Alert
-          value={isErrorValidation}
-          handleValue={setIsErrorValidation}
+          handleValue={handleResetError}
           message="У вас есть неправильные заполненные поля"
           type="error"
         >
@@ -277,15 +279,15 @@ export const LoginPage = () => {
       {isOffline && (
         <Alert
           value={isOffline}
-          handleValue={setIsOffline}
+          handleValue={handleResetError}
           message="У вас нет поключения к интернету"
           type="error"
         ></Alert>
       )}
-      {isErrorFromBackend && (
+      {isLoginError && (
         <Alert
-          value={isErrorFromBackend}
-          handleValue={setIsErrorFromBackend}
+          handleValue={handleResetError}
+          value={isLoginError}
           message="Ошибка при авторизации"
           type="error"
         >
@@ -315,6 +317,28 @@ export const LoginPage = () => {
                       errorRegistration.data.errors.map((objError) => (
                         <span>{objError.param}</span>
                       ))}
+                  </span>
+                </li>
+              </ul>
+            )}
+        </Alert>
+      )}
+      {isErrorRegistration && (
+        <Alert
+          value={isLoginError}
+          message="Ошибка при авторизации"
+          type="error"
+          handleValue={handleResetError}
+        >
+          {isVieEnterForm &&
+            errorRegistration &&
+            "data" in errorRegistration && (
+              <ul className="app-error-login">
+                <li>
+                  <span>
+                    {isErrorWithMessage(errorRegistration) &&
+                      "message" in errorRegistration.data &&
+                      errorRegistration.data.message + "."}
                   </span>
                 </li>
               </ul>

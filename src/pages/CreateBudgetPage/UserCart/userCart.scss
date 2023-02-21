@@ -1,12 +1,30 @@
 @import "../../../Common-Style/colors.scss";
 .userCart-wrapper {
+  cursor: pointer;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   box-shadow: 0px 0px 9px 1px $createBudgetPageBg;
   border-radius: 10px;
   min-height: 30px;
+  margin-bottom: 20px;
 
+  & span {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+  }
+}
+.userCart-wrapper-active {
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  box-shadow: 0px 0px 9px 1px rgba(35, 62, 67, 0.951);
+  border-radius: 10px;
+  min-height: 30px;
+  margin-bottom: 20px;
   & span {
     display: flex;
     align-items: center;

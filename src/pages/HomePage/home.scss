@@ -1,7 +1,54 @@
-@import "../../Common-Style/colors.scss";
-.app-home-page-bg {
-  background-color: $homePageBg;
-}
 .app-home-page-content {
   display: flex;
+}
+.app-home-page-content__wrapper {
+  width: 100%;
+  height: 100%;
+}
+.app-home-sceleton__wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.app-home-content__item {
+  padding: 5px;
+  width: 40%;
+  min-width: 270px;
+  height: 80%;
+  min-height: 400px;
+  background-color: #deb88760;
+  margin-bottom: 50px;
+  box-shadow: 0px 0px 16px 8px rgba(0, 0, 0, 0.36);
+  border-radius: 10px;
+}
+// .app-home-content__info {
+//   margin-left: 100px;
+// }
+.app-home-page__content {
+  height: 100%;
+  min-height: 300px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-home-page-no-budget {
+  font-size: 17px;
+  color: white;
+  line-height: 35px;
+}
+@media (max-width: 650px) {
+  .app-home-content__item {
+    width: 90%;
+  }
+  .app-home-page-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
 }

@@ -5,8 +5,26 @@
   font-style: normal;
   font-weight: normal;
 }
+@font-face {
+  font-family: "UZSans"; /* Имя шрифта */
+  src: url("./assets/fonts/UZSans-Regular.ttf"); /* Путь к файлу со шрифтом */
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "UZSans"; /* Имя шрифта */
+  src: url("./assets/fonts/UZSans-Medium.ttf"); /* Путь к файлу со шрифтом */
+  font-style: medium;
+  font-weight: medium;
+}
+@font-face {
+  font-family: "UZSans"; /* Имя шрифта */
+  src: url("./assets/fonts/UZSans-Bold.ttf"); /* Путь к файлу со шрифтом */
+  font-style: bold;
+  font-weight: bold;
+}
 * {
-  font-family: "Vinnytsia";
+  font-family: "UZSans";
   font-size: 10px;
   padding: 0;
   margin: 0;
@@ -15,7 +33,7 @@
 *,
 *:before,
 *:after {
-  font-family: "Vinnytsia";
+  font-family: "UZSans";
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -26,7 +44,7 @@
 }
 a:focus,
 a:active {
-  font-family: "Vinnytsia";
+  font-family: "UZSans";
 }
 
 html,
@@ -39,15 +57,16 @@ body {
   -ms-text-size-adjust: 100;
   -moz-text-size-adjust: 100;
   -webkit-text-size-adjust: 100;
-  font-family: "Vinnytsia";
+  font-family: "UZSans";
   transition: 0.3s all;
+
   @include bgPage();
 }
 
 input,
 button,
 textarea {
-  font-family: "Vinnytsia";
+  font-family: "UZSans";
 }
 
 input::-ms-clear {
@@ -62,7 +81,7 @@ button::-moz-focus-inner {
 }
 a,
 a:visited {
-  font-family: "Vinnytsia";
+  font-family: "UZSans";
   text-decoration: none;
 }
 ul ol {
@@ -106,6 +125,1080 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.bg-body {
-  background-color: rgba(255, 255, 255, 0);
+
+.app-home-page-bg {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #deb88790;
+  animation: changeColorBg 0.5s ease forwards;
+}
+@keyframes changeColorBg {
+  from {
+    transition: all 0.3s;
+    background-color: #fff;
+  }
+  49% {
+    background-color: #fff;
+  }
+  50% {
+    background-color: #deb88710;
+  }
+  60% {
+    background-color: #deb88720;
+  }
+  70% {
+    background-color: #deb88730;
+  }
+  75% {
+    background-color: #deb88740;
+  }
+  80% {
+    background-color: #deb88750;
+  }
+  85% {
+    background-color: #deb88760;
+  }
+  90% {
+    background-color: #deb88770;
+  }
+  95% {
+    background-color: #deb88780;
+  }
+  to {
+    background-color: #deb88790;
+  }
+}
+//
+//
+//
+//
+//
+.app-account-page-bg {
+  transition: 0.3s all;
+  background-color: #a887de85;
+  @include bgPage();
+  animation: changeColorBg-account 0.5s ease forwards;
+}
+@keyframes changeColorBg-account {
+  from {
+    transition: all 0.3s;
+    background-color: #fff;
+  }
+  49% {
+    background-color: #fff;
+  }
+  50% {
+    background-color: #a887de10;
+  }
+  60% {
+    background-color: #a887de20;
+  }
+  70% {
+    background-color: #a887de30;
+  }
+  75% {
+    background-color: #a887de40;
+  }
+  80% {
+    background-color: #a887de50;
+  }
+  85% {
+    background-color: #a887de60;
+  }
+  90% {
+    background-color: #a887de70;
+  }
+  95% {
+    background-color: #a887de80;
+  }
+  to {
+    background-color: #a887de90;
+  }
+}
+//
+
+//
+//
+//
+//
+//
+//
+//
+//
+.app-login-page-bg {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #93188d55;
+  animation: changeColorBg-login 0.5s ease forwards;
+}
+@keyframes changeColorBg-login {
+  from {
+    transition: all 0.3s;
+    background-color: #93188d10;
+  }
+  49% {
+    background-color: #93188d10;
+  }
+  50% {
+    background-color: #93188d05;
+  }
+  60% {
+    background-color: #93188d10;
+  }
+  70% {
+    background-color: #93188d15;
+  }
+  75% {
+    background-color: #93188d20;
+  }
+  80% {
+    background-color: #93188d25;
+  }
+  85% {
+    background-color: #93188d30;
+  }
+  90% {
+    background-color: #93188d35;
+  }
+  95% {
+    background-color: #93188d38;
+  }
+  to {
+    background-color: #93188d55;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-createBudget-page-bg {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #87d1de95;
+  animation: app-createBudget-page-bg 0.5s ease forwards;
+}
+
+@keyframes app-createBudget-page-bg {
+  from {
+    transition: all 0.3s;
+    background-color: #fff;
+  }
+  50% {
+    background-color: #87d1de00;
+  }
+  60% {
+    background-color: #87d1de20;
+  }
+  65% {
+    background-color: #87d1de30;
+  }
+  70% {
+    background-color: #87d1de40;
+  }
+  80% {
+    background-color: #87d1de50;
+  }
+  85% {
+    background-color: #87d1de60;
+  }
+  90% {
+    background-color: #87d1de70;
+  }
+  95% {
+    background-color: #87d1de80;
+  }
+  to {
+    background-color: #87d1de95;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-stat-page-bg {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #b387de95;
+  animation: app-stat-page-bg 0.5s ease forwards;
+}
+
+@keyframes app-stat-page-bg {
+  from {
+    transition: all 0.3s;
+    background-color: #fff;
+  }
+  50% {
+    background-color: #b387de00;
+  }
+  60% {
+    background-color: #b387de20;
+  }
+  65% {
+    background-color: #b387de30;
+  }
+  70% {
+    background-color: #b387de40;
+  }
+  80% {
+    background-color: #b387de50;
+  }
+  85% {
+    background-color: #b387de60;
+  }
+  90% {
+    background-color: #b387de70;
+  }
+  95% {
+    background-color: #b387de80;
+  }
+  to {
+    background-color: #b387de95;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-aim-page-bg {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #de878795;
+  animation: app-aim-page-bg 0.5s ease forwards;
+}
+
+@keyframes app-aim-page-bg {
+  from {
+    transition: all 0.3s;
+    background-color: #fff;
+  }
+  50% {
+    background-color: #de878700;
+  }
+  60% {
+    background-color: #de878720;
+  }
+  65% {
+    background-color: #de878730;
+  }
+  70% {
+    background-color: #de878740;
+  }
+  80% {
+    background-color: #de878750;
+  }
+  85% {
+    background-color: #de878760;
+  }
+  90% {
+    background-color: #de878770;
+  }
+  95% {
+    background-color: #de878780;
+  }
+  to {
+    background-color: #de878799;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-incom-page-bg {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #87de9d95;
+  animation: app-incom-page-bg 0.5s ease forwards;
+}
+
+@keyframes app-incom-page-bg {
+  from {
+    transition: all 0.3s;
+    background-color: #fff;
+  }
+  50% {
+    background-color: #87de9d00;
+  }
+  60% {
+    background-color: #87de9d20;
+  }
+  65% {
+    background-color: #87de9d30;
+  }
+  70% {
+    background-color: #87de9d40;
+  }
+  80% {
+    background-color: #87de9d50;
+  }
+  85% {
+    background-color: #87de9d60;
+  }
+  90% {
+    background-color: #87de9d70;
+  }
+  95% {
+    background-color: #87de9d80;
+  }
+  to {
+    background-color: #87de9d95;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-chan-page-bg {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #de87dd95;
+  animation: app-chan-page-bg 0.5s ease forwards;
+}
+
+@keyframes app-chan-page-bg {
+  from {
+    transition: all 0.3s;
+    background-color: #fff;
+  }
+  50% {
+    background-color: #de87dd00;
+  }
+  60% {
+    background-color: #de87dd20;
+  }
+  65% {
+    background-color: #de87dd30;
+  }
+  70% {
+    background-color: #de87dd40;
+  }
+  80% {
+    background-color: #de87dd50;
+  }
+  85% {
+    background-color: #de87dd60;
+  }
+  90% {
+    background-color: #de87dd70;
+  }
+  95% {
+    background-color: #de87dd80;
+  }
+  to {
+    background-color: #de87dd95;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-expens-page-bg {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #87a8de95;
+  animation: app-expens-page-bg 0.5s ease forwards;
+}
+
+@keyframes app-expens-page-bg {
+  from {
+    transition: all 0.3s;
+    background-color: #fff;
+  }
+  50% {
+    background-color: #87a8de00;
+  }
+  60% {
+    background-color: #87a8de20;
+  }
+  65% {
+    background-color: #87a8de30;
+  }
+  70% {
+    background-color: #87a8de40;
+  }
+  80% {
+    background-color: #87a8de50;
+  }
+  85% {
+    background-color: #87a8de60;
+  }
+  90% {
+    background-color: #87a8de70;
+  }
+  95% {
+    background-color: #87a8de80;
+  }
+  to {
+    background-color: #87a8de95;
+  }
+}
+//
+//
+////
+///
+///
+///
+///
+///
+///
+///
+.app-comment-page-bg {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #bf000063;
+  animation: app-comment-page-bg 0.5s ease forwards;
+}
+
+@keyframes app-comment-page-bg {
+  from {
+    transition: all 0.3s;
+    background-color: #fff;
+  }
+  50% {
+    background-color: #bf000000;
+  }
+  60% {
+    background-color: #bf000010;
+  }
+  65% {
+    background-color: #bf000020;
+  }
+  70% {
+    background-color: #bf000025;
+  }
+  80% {
+    background-color: #bf000030;
+  }
+  85% {
+    background-color: #bf000035;
+  }
+  90% {
+    background-color: #bf000040;
+  }
+  95% {
+    background-color: #bf000050;
+  }
+  to {
+    background-color: #bf000065;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-home-page-bg-exit {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #deb88790;
+  animation: changeColorBg-exit 0.5s ease forwards;
+}
+@keyframes changeColorBg-exit {
+  from {
+    transition: all 0.3s;
+    background-color: #deb88790;
+  }
+  49% {
+    background-color: #deb88780;
+  }
+  50% {
+    background-color: #deb88770;
+  }
+  60% {
+    background-color: #deb88760;
+  }
+  70% {
+    background-color: #deb88750;
+  }
+  75% {
+    background-color: #deb88740;
+  }
+  80% {
+    background-color: #deb88730;
+  }
+  85% {
+    background-color: #deb88720;
+  }
+  90% {
+    background-color: #deb88715;
+  }
+  95% {
+    background-color: #deb88710;
+  }
+  to {
+    background-color: #deb88700;
+  }
+}
+//
+//
+//
+//
+//
+.app-account-page-bg-exit {
+  transition: 0.3s all;
+  background-color: #a887de85;
+  @include bgPage();
+  animation: changeColorBg-account-exit 0.5s ease forwards;
+}
+@keyframes changeColorBg-account-exit {
+  from {
+    transition: all 0.3s;
+    background-color: #a887de85;
+  }
+  49% {
+    background-color: #a887de80;
+  }
+  50% {
+    background-color: #a887de70;
+  }
+  60% {
+    background-color: #a887de60;
+  }
+  70% {
+    background-color: #a887de50;
+  }
+  75% {
+    background-color: #a887de40;
+  }
+  80% {
+    background-color: #a887de30;
+  }
+  85% {
+    background-color: #a887de20;
+  }
+  90% {
+    background-color: #a887de10;
+  }
+  95% {
+    background-color: #a887de05;
+  }
+  to {
+    background-color: #a887de00;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-login-page-bg-exit {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #93188d55;
+  animation: changeColorBg-login-exit 0.5s ease forwards;
+}
+@keyframes changeColorBg-login-exit {
+  from {
+    transition: all 0.3s;
+    background-color: #93188d55;
+  }
+  49% {
+    background-color: #93188d55;
+  }
+  50% {
+    background-color: #93188d45;
+  }
+  60% {
+    background-color: #93188d40;
+  }
+  70% {
+    background-color: #93188d35;
+  }
+  75% {
+    background-color: #93188d30;
+  }
+  80% {
+    background-color: #93188d25;
+  }
+  85% {
+    background-color: #93188d20;
+  }
+  90% {
+    background-color: #93188d15;
+  }
+  95% {
+    background-color: #93188d10;
+  }
+  to {
+    background-color: #93188d05;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-createBudget-page-bg-exit {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #87d1de90;
+  animation: app-createBudget-page-bg-exit 0.5s ease forwards;
+}
+
+@keyframes app-createBudget-page-bg-exit {
+  from {
+    transition: all 0.3s;
+    background-color: #87d1de90;
+  }
+  50% {
+    background-color: #87d1de90;
+  }
+  60% {
+    background-color: #87d1de80;
+  }
+  65% {
+    background-color: #87d1de70;
+  }
+  70% {
+    background-color: #87d1de60;
+  }
+  80% {
+    background-color: #87d1de50;
+  }
+  85% {
+    background-color: #87d1de40;
+  }
+  90% {
+    background-color: #87d1de30;
+  }
+  95% {
+    background-color: #87d1de20;
+  }
+  to {
+    background-color: #87d1de10;
+  }
+}
+////////////////////
+/// ////////////////////////
+/// /////////////////////
+///
+///
+///
+///
+///
+///
+///
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-stat-page-bg-exit {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #b387de85;
+  animation: app-stat-page-bg-exit 0.5s ease forwards;
+}
+
+@keyframes app-stat-page-bg-exit {
+  from {
+    transition: all 0.3s;
+    background-color: #b387de90;
+  }
+  50% {
+    background-color: #b387de90;
+  }
+  60% {
+    background-color: #b387de80;
+  }
+  65% {
+    background-color: #b387de70;
+  }
+  70% {
+    background-color: #b387de60;
+  }
+  80% {
+    background-color: #b387de50;
+  }
+  85% {
+    background-color: #b387de40;
+  }
+  90% {
+    background-color: #b387de30;
+  }
+  95% {
+    background-color: #b387de20;
+  }
+  to {
+    background-color: #b387de05;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-aim-page-bg-exit {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #de878795;
+  animation: app-aim-page-bg-exit 0.5s ease forwards;
+}
+
+@keyframes app-aim-page-bg-exit {
+  from {
+    transition: all 0.3s;
+    background-color: #de878790;
+  }
+  50% {
+    background-color: #de878790;
+  }
+  60% {
+    background-color: #de878780;
+  }
+  65% {
+    background-color: #de878770;
+  }
+  70% {
+    background-color: #de878760;
+  }
+  80% {
+    background-color: #de878750;
+  }
+  85% {
+    background-color: #de878740;
+  }
+  90% {
+    background-color: #de878730;
+  }
+  95% {
+    background-color: #de878720;
+  }
+  to {
+    background-color: #de878705;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-incom-page-bg-exit {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #87de9d85;
+  animation: app-incom-page-bg-exit 0.5s ease forwards;
+}
+
+@keyframes app-incom-page-bg-exit {
+  from {
+    transition: all 0.3s;
+    background-color: #87de9d85;
+  }
+  50% {
+    background-color: #87de9d90;
+  }
+  60% {
+    background-color: #87de9d80;
+  }
+  65% {
+    background-color: #87de9d70;
+  }
+  70% {
+    background-color: #87de9d60;
+  }
+  80% {
+    background-color: #87de9d50;
+  }
+  85% {
+    background-color: #87de9d40;
+  }
+  90% {
+    background-color: #87de9d30;
+  }
+  95% {
+    background-color: #87de9d20;
+  }
+  to {
+    background-color: #87de9d05;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-chan-page-bg-exit {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #de87dd85;
+  animation: app-chan-page-bg-exit 0.5s ease forwards;
+}
+
+@keyframes app-chan-page-bg-exit {
+  from {
+    transition: all 0.3s;
+    background-color: #de87dd90;
+  }
+  50% {
+    background-color: #de87dd80;
+  }
+  60% {
+    background-color: #de87dd70;
+  }
+  65% {
+    background-color: #de87dd60;
+  }
+  70% {
+    background-color: #de87dd50;
+  }
+  80% {
+    background-color: #de87dd40;
+  }
+  85% {
+    background-color: #de87dd30;
+  }
+  90% {
+    background-color: #de87dd20;
+  }
+  95% {
+    background-color: #de87dd10;
+  }
+  to {
+    background-color: #de87dd00;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-expens-page-bg-exit {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #87a8de85;
+  animation: app-expens-page-bg-exit 0.5s ease forwards;
+}
+
+@keyframes app-expens-page-bg-exit {
+  from {
+    transition: all 0.3s;
+    background-color: #87a8de90;
+  }
+  50% {
+    background-color: #87a8de80;
+  }
+  60% {
+    background-color: #87a8de70;
+  }
+  65% {
+    background-color: #87a8de60;
+  }
+  70% {
+    background-color: #87a8de50;
+  }
+  80% {
+    background-color: #87a8de40;
+  }
+  85% {
+    background-color: #87a8de30;
+  }
+  90% {
+    background-color: #87a8de20;
+  }
+  95% {
+    background-color: #87a8de10;
+  }
+  to {
+    background-color: #87a8de00;
+  }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+.app-comment-page-bg-exit {
+  transition: 0.3s all;
+  @include bgPage();
+  background-color: #bf000090;
+  animation: comment-exit 0.5s ease forwards;
+}
+@keyframes comment-exit {
+  from {
+    transition: all 0.3s;
+    background-color: #bf000050;
+  }
+  49% {
+    background-color: #bf000045;
+  }
+  50% {
+    background-color: #bf000040;
+  }
+  60% {
+    background-color: #bf000035;
+  }
+  70% {
+    background-color: #bf000030;
+  }
+  75% {
+    background-color: #bf000025;
+  }
+  80% {
+    background-color: #bf000020;
+  }
+  85% {
+    background-color: #bf000015;
+  }
+  90% {
+    background-color: #bf000010;
+  }
+  95% {
+    background-color: #bf000005;
+  }
+  to {
+    background-color: #bf000000;
+  }
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 50%;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(156, 156, 156, 0.268);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ffffff23, #72727219);
+  border-radius: 10px;
+  border: 1px solid rgba(134, 134, 134, 0.702);
 }

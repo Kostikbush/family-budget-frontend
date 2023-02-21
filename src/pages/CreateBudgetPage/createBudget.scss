@@ -1,11 +1,9 @@
 @import "../../Common-Style/colors.scss";
 @import "../../Common-Style/mixins.scss";
 
-.page-bg-createBudget {
-  background-color: $createBudgetPageBg;
-}
 .form-create-budget {
-  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
   max-width: 500px;
   min-width: 200px;
   max-height: 850px;
@@ -17,7 +15,6 @@
   padding: 5px;
   align-items: center;
   text-align: center;
-  margin-bottom: 80px;
   justify-content: space-between;
   color: white;
   & h3 {
@@ -35,27 +32,14 @@
 .wrapper-resultSerchOfUsers__list-userCarts {
   display: flex;
   flex-direction: column;
-  background-color: #3abbd2;
+  // background-color: #3abbd2;
   height: 100%;
   border-radius: 5px;
 }
-
-.changeScele-enter {
-  opacity: 0;
-}
-
-.changeScele-enter-active {
-  opacity: 1;
-  transition: opacity 600ms, transform 600ms;
-}
-
-.changeScele-exit {
-  opacity: 1;
-}
-
-.changeScele-exit-active {
-  opacity: 0;
-  transition: opacity 300ms, transform 300ms;
+.form-create-budget__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .sceleton-creatBudget {
   margin: 5px 0;

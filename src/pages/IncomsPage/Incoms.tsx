@@ -7,7 +7,7 @@ export const IncomsPage = () => {
     changeBody(ChangeBgPages.INCOM);
   }, []);
   return (
-    <section className="page-bg-incoms page-bg-move">
+    <section className="page-bg-move">
       <article className="page-content-move">
         <h2>Доходы</h2>
         <p>

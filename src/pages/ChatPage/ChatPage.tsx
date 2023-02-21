@@ -7,7 +7,7 @@ export const ChatPage = () => {
     changeBody(ChangeBgPages.CHAT);
   }, []);
   return (
-    <section className="page-bg-chat page-bg-move">
+    <section className="page-bg-move">
       <article className="page-content-move">
         <h2>Чат</h2>
         <p>

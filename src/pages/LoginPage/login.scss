@@ -1,8 +1,5 @@
 @import "../../Common-Style/mixins.scss";
 @import "../../Common-Style/colors.scss";
-.app__login-page {
-  @include bgPage();
-}
 
 .app-login-page-forms__form {
   color: white;

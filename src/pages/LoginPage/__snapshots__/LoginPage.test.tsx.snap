@@ -59,7 +59,7 @@ exports[`Test Login Page LoginPage vie 1`] = `
     class="app-login-page-forms-form__btns"
   >
     <button
-      class="btn"
+      class="btn border-pinc"
       data-testid=""
       type="submit"
     >
@@ -69,7 +69,7 @@ exports[`Test Login Page LoginPage vie 1`] = `
       />
     </button>
     <button
-      class="btn"
+      class="btn border-pinc"
       data-testid="btn-testCgangeForm"
     >
       Регистрация

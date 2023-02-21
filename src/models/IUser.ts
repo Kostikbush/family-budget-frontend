@@ -3,7 +3,9 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
+  avatar: string;
   alert: object;
+  isSetComment: boolean;
 }
 export interface ISearchUser {
   activationLink: string;
