@@ -1,6 +1,5 @@
 @import "../../Common-Style/mixins.scss";
 @import "../../Common-Style/colors.scss";
-
 .app-login-page-forms__form {
   color: white;
   letter-spacing: 2px;
@@ -58,44 +57,9 @@
   align-items: center;
   justify-content: center;
 }
-.app-error-login {
-  width: 100%;
-  height: 45%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  & li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: auto;
-    font-size: 15px;
-    line-height: 18px;
-    color: white;
-    padding: 10px;
-    @include borderEl();
-    //@include shadowErr();
-    background-color: $bgElNoTransparent;
-    & span {
-      margin-right: 10px;
-      font-size: 15px;
-    }
-    & .al-self-icon {
-      color: $colorTextError;
-    }
-  }
-}
+
 .page-blur {
   filter: blur(2px);
-}
-.app-error-login__error-reg {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.app-error-login-error-reg__errors-list {
-  display: flex;
-  flex-direction: column;
 }
 
 .change-form-loginPgae-enter {
@@ -129,22 +93,5 @@
     width: 100%;
     align-items: center;
     flex-direction: column;
-  }
-}
-@media (max-height: 400px) {
-  .app-error-login {
-    & li {
-      padding: 5px;
-    }
-  }
-}
-@media (max-width: 350px) {
-  .app-error-login {
-    & li {
-      padding: 0px;
-      & span {
-        font-size: 10px;
-      }
-    }
   }
 }

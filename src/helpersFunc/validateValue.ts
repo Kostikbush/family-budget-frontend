@@ -1,8 +1,12 @@
-export const validateValue = (value: string, type: string) => {
+export const validateValue = (
+  value: string,
+  type: "name" | "password" | "email"
+) => {
   const errors = new Set();
   if (type === "name") {
     value.length < 3 && errors.add("Имя");
     value.trim() === "" && errors.add("Имя");
+    value.length > 12 && errors.add("Имя");
   }
   if (type === "password") {
     value.length < 6 && errors.add("Пароль");

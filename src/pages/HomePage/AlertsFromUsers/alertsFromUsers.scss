@@ -1,0 +1,69 @@
+@import "../../../Common-Style/colors.scss";
+@import "../../../Common-Style/mixins.scss";
+.app-home-content__alert {
+  position: relative;
+  overflow: hidden;
+}
+.app-home-alert__content {
+  padding: 10px;
+}
+.home-alert-content-item {
+  background-color: rgba(112, 96, 75, 0.166);
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  min-height: 350px;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 10px;
+  @include shadowEl();
+  & h3 {
+    margin: 5px 0 20px 0;
+    border: 2px solid $homePageBg;
+    border-radius: 10px;
+    background-color: rgba(112, 96, 75, 0.166);
+    font-size: 22px;
+    line-height: 26px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 0 8px 4px #ffffff73;
+  }
+}
+.home-alert-content-item__message {
+  border-radius: 10px;
+  background-color: rgba(112, 96, 75, 0.166);
+  font-size: 18px;
+  line-height: 22px;
+  height: 50%;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 0 8px 4px #ffffff73;
+}
+.home-alert-content-item__anser {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 120px;
+}
+.home-message-enter {
+  transform: scale(0);
+}
+.home-message-enter-active {
+  transform: scale(1);
+  transition: transform 300ms;
+}
+
+.home-message-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.home-message-exit-active {
+  transform: scale(0);
+  transition: transform 300ms;
+}

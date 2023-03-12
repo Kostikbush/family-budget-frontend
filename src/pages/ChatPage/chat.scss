@@ -1,1 +1,69 @@
 @import "../../Common-Style/mixins.scss";
+.page-100 {
+  height: 100ch;
+}
+.chat-page-title__avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #d150cf65;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid white;
+  font-size: 35px;
+  color: white;
+}
+.app-chat-sceleton-title {
+  display: flex;
+  width: 130px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-page__title {
+  background-color: #d150cf65;
+  border-radius: 10px;
+  padding: 0 10px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include shadowEl();
+  width: 300px;
+  color: white;
+  font-size: 20px;
+  & span {
+    &:first-child {
+      margin-right: 20px;
+    }
+    &:last-child {
+      font-size: 20px;
+    }
+  }
+}
+.chat-page {
+  display: flex;
+  justify-content: space-between;
+  min-height: 100%;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 70px;
+}
+.account-text__chat-input {
+  width: 70%;
+}
+.chat-control-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.sendMessage {
+  margin-left: 30px;
+}
+@media (max-width: 600px) {
+  .account-text__chat-input {
+    width: 75%;
+  }
+}

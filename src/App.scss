@@ -1,7 +1,10 @@
 @import "./Common-Style/colors.scss";
 @import "./Common-Style/mixins.scss";
 /* common styles */
-
+// .app {
+//   height: 100vh;
+//   overflow-y: scroll;
+// }
 .container {
   margin: 0 auto;
   padding: 0 20px;
@@ -9,102 +12,6 @@
 .arr-ml {
   margin-left: 15px;
 }
-
-//loader
-.app__wrapper-loader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  @include bgPage();
-}
-.app__lds-roller {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.app__lds-roller div {
-  animation: app__lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  transform-origin: 40px 40px;
-}
-.app__lds-roller div:after {
-  content: " ";
-  display: block;
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: $bgElNoTransparent;
-  margin: -4px 0 0 -4px;
-}
-.app__lds-roller div:nth-child(1) {
-  animation-delay: -0.036s;
-}
-.app__lds-roller div:nth-child(1):after {
-  top: 63px;
-  left: 63px;
-}
-.app__lds-roller div:nth-child(2) {
-  animation-delay: -0.072s;
-}
-.app__lds-roller div:nth-child(2):after {
-  top: 68px;
-  left: 56px;
-}
-.app__lds-roller div:nth-child(3) {
-  animation-delay: -0.108s;
-}
-.app__lds-roller div:nth-child(3):after {
-  top: 71px;
-  left: 48px;
-}
-.app__lds-roller div:nth-child(4) {
-  animation-delay: -0.144s;
-}
-.app__lds-roller div:nth-child(4):after {
-  top: 72px;
-  left: 40px;
-}
-.app__lds-roller div:nth-child(5) {
-  animation-delay: -0.18s;
-}
-.app__lds-roller div:nth-child(5):after {
-  top: 71px;
-  left: 32px;
-}
-.app__lds-roller div:nth-child(6) {
-  animation-delay: -0.216s;
-}
-.app__lds-roller div:nth-child(6):after {
-  top: 68px;
-  left: 24px;
-}
-.app__lds-roller div:nth-child(7) {
-  animation-delay: -0.252s;
-}
-.app__lds-roller div:nth-child(7):after {
-  top: 63px;
-  left: 17px;
-}
-.app__lds-roller div:nth-child(8) {
-  animation-delay: -0.288s;
-}
-.app__lds-roller div:nth-child(8):after {
-  top: 56px;
-  left: 12px;
-}
-@keyframes app__lds-roller {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-// end loader
 
 .alert-btn-wrapper {
   max-width: 150px;
@@ -128,9 +35,6 @@
   transition: transform 500ms opacity 500ms;
   animation: move 1s forwards ease;
 }
-////////////
-////////////wrapper-childPage
-/// /
 
 .pagese-enter {
   opacity: 0;
@@ -155,7 +59,7 @@
 }
 
 .app-header-list-blockInfo__text {
-  height: 250px;
+  height: 310px;
   overflow-y: scroll;
 }
 
@@ -178,30 +82,21 @@
 }
 @media screen and (max-width: 400px), screen and (max-height: 700px) {
   .app-header-list-blockInfo__text {
-    height: 180px;
+    height: 250px;
   }
 }
 
 @media (max-width: 400px) {
   .app-header-list-blockInfo__text {
-    height: 200px;
+    height: 320px;
   }
 }
 @media (max-height: 400px) {
   .app-header-list-blockInfo__text {
-    height: 120px;
+    height: 320px;
   }
 }
-@media (max-height: 300px) {
-  .app-header-list-blockInfo__text {
-    height: 100px;
-  }
-}
-@media screen and (min-width: 350px), screen and (min-height: 400px) {
-  .app-header-list-blockInfo__text {
-    height: 250px;
-  }
-}
+
 .changeScele-enter {
   opacity: 0;
 }

@@ -60,7 +60,7 @@ exports[`Test Login Page LoginPage vie 1`] = `
   >
     <button
       class="btn border-pinc"
-      data-testid=""
+      data-testid="button-enter"
       type="submit"
     >
       Войти

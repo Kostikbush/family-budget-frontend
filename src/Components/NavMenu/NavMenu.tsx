@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
@@ -14,6 +15,8 @@ import { TfiCommentsSmiley } from "react-icons/tfi";
 import "./navMenu.scss";
 import { useGetBudgetMutation } from "../../service/budgetApi";
 import { useAppSelectore } from "../../hooks/redux";
+import { moveEndAndStart, moveItem, moveThone } from "./helpersFunc/moveItem";
+import { IndicateNewMessage } from "./IndicateNewMessage";
 
 const routes = [
   {
@@ -63,8 +66,8 @@ const routes = [
 export const NavMenu = () => {
   const [isDragDrop, setIsDragDrop] = useState(false);
   const [styleMoveNavMenu, setStyleMoveNavMenu] = useState({
-    top: "20%",
-    left: "0",
+    top: "2%",
+    left: "1%",
   });
   const [activeMenu, setActiveMenu] = useState(false);
   const authData = useAppSelectore((state) => state.ayth);
@@ -72,28 +75,23 @@ export const NavMenu = () => {
   const location = useLocation();
   useEffect(() => {
     getBudget({ email: authData.email });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleDragEndMoveMenu = (e: React.DragEvent) => {
-    e.preventDefault();
-    setStyleMoveNavMenu({
-      top: `${e.pageY}px`,
-      left: `${e.pageX}px`,
-    });
-    setIsDragDrop(false);
-  };
-  const handleDragLMoveMenu = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragDrop(true);
-  };
+  //className={isDragDrop ? "dis-none" : "dis-vei"}
   return (
     <article className={isDragDrop ? "dis-none" : "dis-vei"}>
       <section
         style={styleMoveNavMenu}
         draggable="true"
-        onDragLeave={(e) => handleDragLMoveMenu(e)}
-        onDragEnd={(e) => handleDragEndMoveMenu(e)}
+        onTouchStart={() => moveEndAndStart("start")}
+        onTouchMove={(e) => moveThone(e, setStyleMoveNavMenu)}
+        onTouchEnd={() => moveEndAndStart("end")}
+        onDragLeave={(e) =>
+          moveItem("left", e, setStyleMoveNavMenu, setIsDragDrop)
+        }
+        onDragEnd={(e) =>
+          moveItem("end", e, setStyleMoveNavMenu, setIsDragDrop)
+        }
         className={
           activeMenu ? "app-nav__wrapper" : "app-nav__wrapper-disabled"
         }
@@ -152,6 +150,9 @@ export const NavMenu = () => {
                   <AiOutlineHome className="link-svg" size={20} color="white" />
                   <span>Главная</span>
                 </div>
+                <IndicateNewMessage
+                  isVie={authData.alert.length > 0 ? true : false}
+                />
               </NavLink>
             </div>
             {data ? null : (

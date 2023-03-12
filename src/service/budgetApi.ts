@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const budgetApi = createApi({
   reducerPath: "budgetApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: "http://192.168.0.102:5000/api",
   }),
   endpoints: (builder) => ({
     getBudget: builder.mutation({
@@ -38,10 +38,25 @@ export const budgetApi = createApi({
         };
       },
     }),
+    anser: builder.mutation({
+      query: (body: {
+        anser: {
+          fromUser: string;
+          anser: "Yes" | "No";
+        };
+      }) => {
+        return {
+          url: "/anserFromUser",
+          method: "post",
+          body,
+        };
+      },
+    }),
   }),
 });
 
 export const {
+  useAnserMutation,
   useCreateBudgetMutation,
   useFindUsersMutation,
   useGetBudgetMutation,

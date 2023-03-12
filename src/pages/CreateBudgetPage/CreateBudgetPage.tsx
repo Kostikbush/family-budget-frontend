@@ -1,15 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useMemo, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { UserCart } from "./UserCart/UserCart";
-import { ChangeBgPages } from "../../CONST/CONST";
+import { ChangeBgPages } from "../../CONST/ChangeBgPages";
 import { changeBody } from "../../helpersFunc/changeBody";
 import { useDebounce } from "../../hooks/debounce";
-import { ISearchUser } from "../../models/IUser";
+import { IFromBackUser } from "../../models/IUser";
 import {
   useCreateBudgetMutation,
   useFindUsersMutation,
+  useGetBudgetMutation,
 } from "../../service/budgetApi";
 import { Btn } from "../../UI/Btn/Btn";
 import { Form } from "../../UI/Form/Form";
@@ -19,10 +21,14 @@ import { useAppSelectore } from "../../hooks/redux";
 import { Alert } from "../../UI/Alert/Alert";
 import { LoadingReqvest } from "../../UI/LoadingReqvest/LoadingReqvest";
 import { useNavigate } from "react-router";
-
+import { QueryResult } from "../../models/typeQueryResult";
+import { IErrorBackend } from "../../models/IErrorBackend";
+export interface AnserFromCreateBudget {
+  text: string;
+  id: string;
+}
 export const CreateBudgetPage = () => {
   let navigate = useNavigate();
-  const [isGetData, setIsGetData] = useState(false);
   const [isResetActive, setIsResetActive] = useState(false);
   const [isNoActiveUser, setIsNoActiveUser] = useState(false);
   const [userActive, setUsersActive] = useState("");
@@ -30,10 +36,15 @@ export const CreateBudgetPage = () => {
   const authData = useAppSelectore((state) => state.ayth);
 
   const debounced = useDebounce(emailTo);
-  const [creatBudget, { isLoading, error, data }] = useCreateBudgetMutation();
-  console.log(error, data);
+  const [creatBudget, { isLoading, error, data }] =
+    useCreateBudgetMutation<
+      QueryResult<AnserFromCreateBudget, IErrorBackend>
+    >();
+  const [getBudget, { data: budget }] = useGetBudgetMutation();
+
   useEffect(() => {
     changeBody(ChangeBgPages.CREATE_BUDGET);
+    getBudget({ email: authData.email });
   }, []);
 
   const [findUsers, { isLoading: isLoadingUsers, data: users }] =
@@ -45,7 +56,6 @@ export const CreateBudgetPage = () => {
   }, [authData.email, debounced, findUsers]);
   useMemo(() => {
     if (data) {
-      setIsGetData(true);
       setTimeout(() => {
         navigate("/home");
       }, 8000);
@@ -53,9 +63,8 @@ export const CreateBudgetPage = () => {
   }, [data, navigate]);
   const handleClickUser = (email: string) => {
     if (userActive === "") {
-      setIsResetActive(false);
       setUsersActive(email);
-    } else if (userActive !== "") {
+    } else if (userActive !== "" && !budget) {
       setIsResetActive(true);
       setUsersActive("");
     }
@@ -68,24 +77,16 @@ export const CreateBudgetPage = () => {
       const emailFrom = authData.email;
       const theme = {
         title: "Создать общий сюжет",
-        message: `Пользователь ${emailFrom} хочет создать общий буджет`,
+        message: `Пользователь ${emailFrom} хочет создать с вами общий буджет`,
       };
-
       creatBudget({ emailFrom, emailTo, theme, expens });
     } else {
       setIsNoActiveUser(true);
     }
   };
-  console.log(data, error);
   return (
     <>
-      <section
-        className={
-          isNoActiveUser || isGetData
-            ? "page-bg-move page-blur"
-            : "page-bg-move app-page-createBudget"
-        }
-      >
+      <section className="page-bg-move app-page-createBudget">
         <article className="page-content-move form-create-budget__wrapper">
           <Form styles="form-create-budget">
             {isLoading && <LoadingReqvest />}
@@ -120,11 +121,11 @@ export const CreateBudgetPage = () => {
                     <div className="wrapper-resultSerchOfUsers">
                       {users && users.length > 0 && (
                         <ul className="wrapper-resultSerchOfUsers__list-userCarts">
-                          {users.map((user: ISearchUser) => (
+                          {users.map((user: IFromBackUser, index: number) => (
                             <UserCart
                               isResetActive={isResetActive}
                               handleClick={handleClickUser}
-                              key={user.id}
+                              key={index}
                               user={user}
                             />
                           ))}
@@ -148,17 +149,23 @@ export const CreateBudgetPage = () => {
           </Form>
         </article>
       </section>
-      {isNoActiveUser && (
-        <Alert
-          type="error"
-          handleValue={setIsNoActiveUser}
-          message="У вас нет выбранных пользователей!"
-          value={isNoActiveUser}
-        />
-      )}
-      {isGetData && (
-        <Alert handleValue={setIsGetData} type="success" message={data.text} />
-      )}
+      <Alert
+        type="error"
+        handleBooleanValue={setIsNoActiveUser}
+        message="У вас нет выбранных пользователей!"
+        isError={isNoActiveUser}
+      />
+      <Alert type="error" errorsFromBack={error} />
+      <Alert
+        vieAlert={data ? true : false}
+        type="success"
+        message={data ? data.text : ""}
+      />
+      <Alert
+        isError={budget ? true : false}
+        type="error"
+        message="Бюджет уже создан"
+      />
     </>
   );
 };

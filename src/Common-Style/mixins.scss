@@ -12,10 +12,10 @@
   border-radius: 3px;
 }
 @mixin shadowEl() {
-  box-shadow: 1px 1px 5px 1px $shadowEl;
+  box-shadow: 0px 0px 5px 1px $shadowEl;
 }
 @mixin shadowErr() {
-  box-shadow: 1px 1px 5px 1px $colorError;
+  box-shadow: 0px 0px 5px 1px $colorError;
 }
 @mixin borderEl() {
   border: 3px solid $bgBorderEl;

@@ -1,6 +1,12 @@
+@import "../../Common-Style/mixins.scss";
+.app-home-wrapper {
+  padding: 0 20px;
+}
 .app-home-page-content {
   display: flex;
+  justify-content: space-between;
 }
+
 .app-home-page-content__wrapper {
   width: 100%;
   height: 100%;
@@ -16,25 +22,43 @@
 }
 .app-home-content__item {
   padding: 5px;
-  width: 40%;
+  width: 47%;
   min-width: 270px;
   height: 80%;
   min-height: 400px;
   background-color: #deb88760;
   margin-bottom: 50px;
-  box-shadow: 0px 0px 16px 8px rgba(0, 0, 0, 0.36);
+  @include shadowEl();
   border-radius: 10px;
 }
-// .app-home-content__info {
-//   margin-left: 100px;
-// }
-.app-home-page__content {
+
+.app-home-page-info__content {
+  padding: 15px;
   height: 100%;
   min-height: 300px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.app-home-page-budget {
+  height: 100%;
+  min-height: 350px;
+  & h2 {
+    padding: 5px 7px;
+    background-color: #deb88760;
+    border: 3px solid #e3a24d60;
+    border-radius: 10px;
+    font-size: 17px;
+    color: white;
+    line-height: 30px;
+    box-shadow: 0px 0px 5px 1px rgba(255, 255, 255, 0.38);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+  }
 }
 .app-home-page-no-budget {
   font-size: 17px;

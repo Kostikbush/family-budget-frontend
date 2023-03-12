@@ -1,68 +1,65 @@
-import { ReactNode, useEffect, useMemo, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { ReactNode, useMemo, useState } from "react";
 import { CSSTransition } from "react-transition-group";
+import { ErrorBackWork, IErrorBackend } from "../../models/IErrorBackend";
 import { Btn } from "../Btn/Btn";
 
 import "./alert.scss";
+import { changeStyle } from "./helpersFunc/helpersfunc";
 
-interface errorFromBack {
-  data: {
-    errors?: [];
-    message: string;
-  };
-  status?: number;
-}
 interface AlertProps {
-  type: "error" | "alert" | "success";
+  type: "error" | "alert" | "success" | "choose";
   message?: string;
   children?: ReactNode;
-  handleValue?: Function;
-  value?: boolean;
-  errorsFromBack?: errorFromBack[] | any[] | undefined[] | undefined;
-  alert?: {};
+  handleBooleanValue?: Function;
+  errorsFromBack?: IErrorBackend | undefined;
+  errorsValidtionForm?: string[];
+  setRessetArray?: Function;
+  isError?: boolean;
+  errorWorkBack?: ErrorBackWork | undefined;
+  vieAlert?: boolean;
+  chooseYes?: Function;
 }
+
 export const Alert = ({
   type,
   message,
   children,
-  handleValue,
-  value,
+  handleBooleanValue,
   errorsFromBack,
-  alert,
+  errorsValidtionForm,
+  setRessetArray,
+  errorWorkBack,
+  vieAlert,
+  isError,
+  chooseYes,
 }: AlertProps) => {
   const [vei, setVie] = useState(false);
-  const page = document.querySelector(".page-bg-move");
+  const page = document.querySelectorAll(".page-bg-move");
 
-  const handleClick = () => {
-    setVie(false);
-    setTimeout(() => {
-      if (handleValue) {
-        handleValue(false);
-      }
-      page && page.classList.remove("page-blur");
-    }, 300);
-  };
-  useEffect(() => {
+  const changeOnEnter = () => {
     setVie(true);
-    if (
-      (errorsFromBack && errorsFromBack[0] !== undefined) ||
-      alert !== undefined
-    ) {
-      page && page.classList.add("page-blur");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    page && changeStyle(page, "add");
+  };
   useMemo(() => {
-    if ((value === undefined || value === null) && !handleValue) {
-      setTimeout(() => {
-        setVie(false);
-      }, 5000);
+    if (errorsFromBack || isError || errorWorkBack) {
+      changeOnEnter();
+    } else if (errorsValidtionForm && errorsValidtionForm.length > 0) {
+      changeOnEnter();
+    } else if (vieAlert) {
+      changeOnEnter();
     }
-  }, [value, handleValue]);
-  setTimeout(() => {
-    if ((value === undefined || value === null) && !handleValue) {
-      page && page.classList.remove("page-blur");
-    }
-  }, 5000);
+  }, [errorsFromBack, isError, errorWorkBack, errorsValidtionForm, vieAlert]);
+  const handleClickClose = () => {
+    handleBooleanValue && handleBooleanValue(false);
+    setRessetArray && setRessetArray([]);
+
+    page && changeStyle(page, "remove");
+    setVie(false);
+  };
+  const handleChooseYes = () => {
+    chooseYes && chooseYes();
+  };
   return (
     <CSSTransition
       timeout={200}
@@ -74,19 +71,62 @@ export const Alert = ({
         {type === "error" && (
           <h2 className="app-alert-container__h2 h2-error">Ошибка</h2>
         )}
-        {type === "alert" && (
+        {(type === "choose" || type === "alert") && (
           <h2 className="app-alert-container__h2 h2-alert">Уведомление</h2>
         )}
         {type === "success" && (
           <h2 className="app-alert-container__h2 h2-success">Успешно</h2>
         )}
-        <p>{message}</p>
-        {errorsFromBack?.map((error) => (
-          <p>{error !== undefined && error.data.message}</p>
-        ))}
+
+        <p>{message ? message : ""}</p>
+        <p>{errorsFromBack && errorsFromBack.data.message}</p>
+
+        {errorsFromBack &&
+          errorsFromBack.data &&
+          errorsFromBack.data.errors &&
+          errorsFromBack.data.errors.length > 0 && (
+            <ul className="errors-list-alert">
+              {errorsFromBack.data.errors.map((error, index: number) => (
+                <li key={index}>{error.value}</li>
+              ))}
+            </ul>
+          )}
+
+        {errorsValidtionForm && errorsValidtionForm.length > 0 && (
+          <ul className="errors-list-alert">
+            {errorsValidtionForm.map((error, index: number) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
+        )}
+
+        {errorWorkBack && (
+          <span className="errorWorkBack-text">{errorWorkBack.error}</span>
+        )}
         {children}
-        {handleValue && (
-          <Btn waveColor="light" text="Закрыть" handleClick={handleClick} />
+        {!errorWorkBack && type !== "choose" && (
+          <Btn
+            testId="btn-alert"
+            waveColor="light"
+            text="Закрыть"
+            handleClick={handleClickClose}
+          />
+        )}
+        {type === "choose" && (
+          <div className="choose-btn">
+            <Btn
+              handleClick={handleChooseYes}
+              text="Да"
+              type="button"
+              waveColor="light"
+            />
+            <Btn
+              handleClick={handleClickClose}
+              text="Нет"
+              type="button"
+              waveColor="light"
+            />
+          </div>
         )}
       </section>
     </CSSTransition>

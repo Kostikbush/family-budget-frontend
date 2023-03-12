@@ -1,10 +1,5 @@
 @import "./Common-Style/mixins.scss";
-@font-face {
-  font-family: "Vinnytsia"; /* Имя шрифта */
-  src: url("./assets/fonts/VinnytsiaSansReg.ttf"); /* Путь к файлу со шрифтом */
-  font-style: normal;
-  font-weight: normal;
-}
+
 @font-face {
   font-family: "UZSans"; /* Имя шрифта */
   src: url("./assets/fonts/UZSans-Regular.ttf"); /* Путь к файлу со шрифтом */
@@ -49,17 +44,17 @@ a:active {
 
 html,
 body {
+  zoom: reset;
+  zoom: 100%;
+  -moz-transform: scale(1, 1);
+  -moz-transform-origin: top left;
   height: 100%;
   width: 100%;
-  font-size: 100%;
-  line-height: 100%;
-  font-size: 14px;
   -ms-text-size-adjust: 100;
   -moz-text-size-adjust: 100;
   -webkit-text-size-adjust: 100;
   font-family: "UZSans";
   transition: 0.3s all;
-
   @include bgPage();
 }
 

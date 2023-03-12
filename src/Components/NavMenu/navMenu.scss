@@ -1,5 +1,6 @@
 @import "../../Common-Style/colors.scss";
 @import "../../Common-Style/mixins.scss";
+
 .app-nav__wrapper-disabled {
   padding: 5px;
   @include shadowEl();
@@ -217,7 +218,7 @@
   }
 }
 .link {
-  transform: 0.2s all;
+  transition: 0.2s all;
   margin-bottom: 7px;
   width: 0px;
   height: 0px;
@@ -226,18 +227,18 @@
     margin-bottom: 0;
   }
   &:hover span {
-    transform: 0.2s all;
+    transition: 0.2s all;
     opacity: 1;
     display: flex;
     width: 100px;
   }
   &:hover {
-    transform: 0.5s all;
+    transition: 0.5s all;
     width: 80px;
     transform: translateX(20px);
   }
   & .link-content {
-    transform: 0.5s all;
+    transition: 0.5s all;
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -252,6 +253,11 @@
     transition: 0.5s all;
     transform: translateX(20px);
     width: 140px;
+  }
+  &:hover .indicate {
+    position: absolute;
+    right: -290%;
+    top: 15%;
   }
   & span {
     transition: 0.2s all;
@@ -280,11 +286,23 @@
     }
   }
 }
+.indicate {
+  transition: 0.1s all;
+  background-color: rgb(255, 0, 0);
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  right: 5%;
+  top: 15%;
+}
 //home
 .active-link-home .link-content-home {
   box-shadow: 0px 0px 3px 5px rgba(222, 184, 135, 0.4);
 }
-
+.link-color-home {
+  position: relative;
+}
 .link-content-home {
   background-color: #deb887;
 }

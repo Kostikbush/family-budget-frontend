@@ -3,17 +3,15 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: "http://192.168.0.102:5000/api",
   }),
   endpoints: (builder) => ({
     loginUser: builder.mutation({
-      query: (body: { email: string; password: string }) => {
-        return {
-          url: "/login",
-          method: "post",
-          body,
-        };
-      },
+      query: (body: { email: string; password: string }) => ({
+        url: "/login",
+        method: "post",
+        body,
+      }),
     }),
     registUser: builder.mutation({
       query: (body: { email: string; name: string; password: string }) => {
@@ -67,10 +65,49 @@ export const authApi = createApi({
         };
       },
     }),
+    getOpponent: builder.mutation({
+      query: (body: { budgetId: string }) => {
+        return {
+          url: "/getOpponent",
+          method: "post",
+          body,
+        };
+      },
+    }),
+    checkBack: builder.mutation<any, void>({
+      query: () => {
+        return {
+          url: "/checkBack",
+          method: "get",
+        };
+      },
+    }),
+    getUser: builder.mutation({
+      query: (body: { email: string }) => {
+        return {
+          url: "/getUser",
+          method: "post",
+          body,
+        };
+      },
+    }),
+    changeName: builder.mutation({
+      query: (body: { email: string; name: string }) => {
+        return {
+          url: "/changeName",
+          method: "post",
+          body,
+        };
+      },
+    }),
   }),
 });
 
 export const {
+  useChangeNameMutation,
+  useGetUserMutation,
+  useCheckBackMutation,
+  useGetOpponentMutation,
   useDeleteAccountMutation,
   useAddCommentMutation,
   useGetCommentMutation,

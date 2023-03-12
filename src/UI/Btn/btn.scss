@@ -53,19 +53,13 @@
 .pulse-light {
   background: rgba(255, 255, 255, 0.608);
 }
-@media (max-height: 480px) {
+@media (max-height: 400px) {
   .btn {
     font-size: 12px;
     height: 25px;
   }
 }
-@media (max-height: 400px) {
-  .btn {
-    font-size: 10px;
-    height: 20px;
-    width: 115px;
-  }
-}
+
 .border-red {
   border: 2px solid rgba(191, 0, 0, 0.285);
 }

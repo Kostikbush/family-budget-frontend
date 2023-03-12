@@ -1,27 +1,36 @@
-import { useEffect } from "react";
-import { ChangeBgPages } from "../../CONST/CONST";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useMemo, useState } from "react";
+import { ChangeBgPages } from "../../CONST/ChangeBgPages";
 import { changeBody } from "../../helpersFunc/changeBody";
+import { useAppDispatch, useAppSelectore } from "../../hooks/redux";
+
 import "./chat.scss";
+import { ChatControl } from "./Components/ChatControl";
+import { ChatMessage } from "./Components/ChatMessage";
+import { TitleChat } from "./Components/TitleChat";
+
 export const ChatPage = () => {
+  const [styleHeight, setStyleHeight] = useState(
+    document.documentElement.offsetHeight
+  );
+  useMemo(() => {
+    console.log(document.documentElement.offsetHeight);
+    setStyleHeight(document.documentElement.offsetHeight);
+  }, [document.documentElement]);
   useEffect(() => {
     changeBody(ChangeBgPages.CHAT);
   }, []);
   return (
-    <section className="page-bg-move">
-      <article className="page-content-move">
-        <h2>Чат</h2>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima,
-          veniam illum consequatur rerum dicta vel dolor repellendus incidunt
-          non optio. Eos iste officiis magni consequatur voluptatum? Inventore
-          dolorem ad facilis. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Et sint a dicta officia, voluptas quasi deserunt nostrum quia
-          soluta error dolorem sapiente sunt cum, pariatur quas id nulla,
-          dolorum tempora! Lorem ipsum dolor sit, amet consectetur adipisicing
-          elit. Fugiat minus perspiciatis vitae adipisci, natus culpa? Odit
-          ullam blanditiis ad, laboriosam ipsam omnis fugit hic quo ratione
-          dicta quasi officia consequuntur.
-        </p>
+    <section
+      // style={{
+      //   height: styleHeight - 70 + "px",
+      // }}
+      className="page-bg-move page-100"
+    >
+      <article className="page-content-move chat-page">
+        <TitleChat />
+        <ChatMessage />
+        <ChatControl />
       </article>
     </section>
   );

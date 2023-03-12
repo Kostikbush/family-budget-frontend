@@ -1,4 +1,5 @@
 @import "../../Common-Style/colors.scss";
+@import "../../Common-Style/mixins.scss";
 
 .app-account-page__content {
   position: relative;
@@ -16,6 +17,7 @@
   box-shadow: 0px 0px 16px 8px rgba(0, 0, 0, 0.36);
 }
 .account-item__avatar {
+  @include shadowEl();
   position: relative;
   width: 100px;
   height: 100px;
@@ -38,8 +40,33 @@
     opacity: 1;
   }
 }
+.account-name__wrapper {
+  width: 250px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 1px rgb(255 255 255 / 38%);
+}
+.account-change__input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.cross-change-form {
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.pen-change-form {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.account-name__change {
+  max-width: 180px;
+}
 .account-item__name {
-  width: 50%;
+  box-shadow: 0px 0px 5px 1px rgb(255 255 255 / 38%);
+  width: 100%;
   background-color: rgb(146, 97, 224);
   border-radius: 10px;
   font-size: 30px;
@@ -50,6 +77,7 @@
   justify-content: center;
 }
 .account-item__budget {
+  box-shadow: 0px 0px 8px 2px rgba(255, 255, 255, 0.294);
   padding: 5px;
   background-color: rgb(146, 97, 224);
   border-radius: 10px;
@@ -59,17 +87,12 @@
   align-items: center;
   justify-content: center;
   color: white;
-  & span {
-    text-align: center;
-    line-height: 30px;
-    font-size: 22px;
-  }
 }
 .account-img-choose-avatar {
   position: absolute;
   overflow: hidden;
   background-color: rgb(146, 97, 224);
-  top: 30%;
+  top: 20%;
   left: calc(50% - 300px / 2);
   width: 300px;
   height: 450px;
@@ -80,9 +103,10 @@
   border-radius: 10px;
   box-shadow: 0px 0px 16px 8px rgba(0, 0, 0, 0.36);
   transition: 0.3s all;
+  z-index: 101;
 }
 .account-img-choose-avatar-disabled {
-  animation: vieAvatars-disabled 0.5s ease forwards;
+  animation: vieAvatars-disabled 0.2s ease forwards;
 }
 .account-img-choose-avatar-active {
   animation: vieAvatars 0.5s ease forwards;
@@ -91,7 +115,11 @@
   from {
     transform: scale(1);
   }
+  90% {
+    display: flex;
+  }
   to {
+    display: none;
     transform: scale(0);
   }
 }
@@ -131,9 +159,18 @@
   border: 2px solid white;
   border-radius: 50%;
 }
+.home-budget__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-budget__noBudget {
+  font-size: 20px;
+  line-height: 26px;
+}
 @media (max-width: 1000px) {
   .account-item__name {
-    width: 60%;
+    width: 100%;
   }
 }
 @media (max-width: 500px) {

@@ -97,7 +97,9 @@
   text-align: center;
   color: #fff;
 }
-
+.app-header-list__question {
+  cursor: pointer;
+}
 @media (max-width: 400px) {
   .app-header-list-item__logo {
     line-height: 20px;

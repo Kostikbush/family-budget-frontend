@@ -4,7 +4,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { ChangeBgPages } from "../../CONST/CONST";
+import { ChangeBgPages } from "../../CONST/ChangeBgPages";
 import { changeBody } from "../../helpersFunc/changeBody";
 import { useAppDispatch, useAppSelectore } from "../../hooks/redux";
 import {
@@ -29,8 +29,7 @@ export const CommentPage = () => {
   const dispatch = useAppDispatch();
   const [styleItems, setStyleItems] = useState({});
   const [left, setLeft] = useState(30);
-  const [smileActive, setSmileActive] = useState("");
-  const [errorValidationComment, setErrorValidationComment] = useState(false);
+  const [smileActive, setSmileActive] = useState("happy");
   const [comment, setComment] = useState("");
   const authData = useAppSelectore((state) => state.ayth);
 
@@ -45,7 +44,6 @@ export const CommentPage = () => {
   }, []);
   const addCommentN = () => {
     if (smileActive.trim() === "") {
-      setErrorValidationComment(true);
       return;
     } else {
       addComment({
@@ -69,19 +67,14 @@ export const CommentPage = () => {
             avatar: user.avatar,
             alert: user.alert,
             isSetComment: user.isSetComment,
+            budget: user.budget,
+            chat: user.chat,
           })
         );
       }, 300);
     }
   }, [user]);
-  useMemo(() => {
-    if (comments && comments.length > 0) {
-      setStyleItems({
-        width: `${comments.length * 600}px`,
-        left: "30px",
-      });
-    }
-  }, [comments]);
+
   const ternLeft = () => {
     if (left > 0) {
       setStyleItems({ ...styleItems, left: 30 + "px" });
@@ -111,8 +104,12 @@ export const CommentPage = () => {
       comments !== undefined
     ) {
       setNewComments(comments.slice().reverse());
-      console.log(comments.length);
-      //.reverse()
+    }
+    if (comments && comments.length > 0) {
+      setStyleItems({
+        width: `${comments.length * 600}px`,
+        left: "30px",
+      });
     }
   }, [comments]);
   return (
@@ -198,7 +195,6 @@ export const CommentPage = () => {
                 <textarea
                   value={comment}
                   onChange={(e) => setComment(e.currentTarget.value)}
-                  //placeholder="Отзыв"
                   className="comment__input-color-wrapper"
                 />
               </div>
@@ -214,18 +210,12 @@ export const CommentPage = () => {
           )}
         </article>
       </section>
-      {errorValidationComment && (
-        <Alert
-          alert={{}}
-          handleValue={setErrorValidationComment}
-          value={errorValidationComment}
-          type="error"
-          message="У вас не выбран смаил!"
-        />
-      )}
-      {errorComment && (
-        <Alert alert={{}} type="error" message="Ошибка загрузки отзывов!" />
-      )}
+      <Alert
+        isError={smileActive === "" ? true : false}
+        type="error"
+        message="У вас не выбран смаил!"
+      />
+      <Alert type="error" isError={errorComment ? true : false} />
     </>
   );
 };

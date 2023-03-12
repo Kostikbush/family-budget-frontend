@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ChangeBgPages } from "../../CONST/CONST";
+import { ChangeBgPages } from "../../CONST/ChangeBgPages";
 import { changeBody } from "../../helpersFunc/changeBody";
 import "./aim.scss";
 export const AimPage = () => {
@@ -21,6 +21,346 @@ export const AimPage = () => {
           elit. Fugiat minus perspiciatis vitae adipisci, natus culpa? Odit
           ullam blanditiis ad, laboriosam ipsam omnis fugit hic quo ratione
           dicta quasi officia consequuntur.
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <var>v</var>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          v
+          <br />v
         </p>
       </article>
     </section>

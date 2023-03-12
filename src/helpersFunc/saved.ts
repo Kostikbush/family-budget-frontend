@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IUser } from "../models/IUser";
+import { alertItem, IFromBackUser } from "../models/IUser";
 
 let idbSupported = false;
 let db: IDBDatabase;
 
-export const savedIndexDB = (aftorasationData: IUser) => {
+export const savedIndexDB = (aftorasationData: IFromBackUser) => {
   const aftorasationSaved = "aftorasationSaved";
 
   function indexedDBOk() {
@@ -41,9 +41,11 @@ export const getDataFromIndexDB = (func: Function, fun: Function) => {
   let name: string = "";
   let email: string = "";
   let password: string = "";
-  let alert: Array<{}> = [];
+  let alert: alertItem[] = [];
   let avatar: string = "";
   let isSetComment: boolean = false;
+  let budget: string | null | undefined = null;
+  let chat: string | null | undefined = null;
   function indexedDBOk() {
     idbSupported = true;
     return "indexedDB" in window;
@@ -79,19 +81,26 @@ export const getDataFromIndexDB = (func: Function, fun: Function) => {
         alert = value.alert || [];
         avatar = value.avatar || "";
         isSetComment = value.isSetComment || false;
-        func(fun({ name, email, password, alert, avatar, isSetComment }));
+        budget = value.budget || null;
+        chat = value.chat || null;
+        func(
+          fun({
+            name,
+            email,
+            password,
+            alert,
+            avatar,
+            isSetComment,
+            budget,
+            chat,
+          })
+        );
       }
     };
     openRequest.onerror = function () {
       console.log("error");
     };
   };
-  const data = {
-    email,
-    name,
-    password,
-  };
-  return data;
 };
 
 export const deleteDataBaseIndexDb = () => {

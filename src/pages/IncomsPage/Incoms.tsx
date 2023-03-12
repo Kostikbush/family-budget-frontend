@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ChangeBgPages } from "../../CONST/CONST";
+import { ChangeBgPages } from "../../CONST/ChangeBgPages";
 import { changeBody } from "../../helpersFunc/changeBody";
 import "./incom.scss";
 export const IncomsPage = () => {

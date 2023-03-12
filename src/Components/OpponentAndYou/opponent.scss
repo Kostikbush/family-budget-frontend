@@ -1,0 +1,58 @@
+@import "../../Common-Style/colors.scss";
+@import "../../Common-Style/mixins.scss";
+.budget__icons {
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.budget-icons__wrapper {
+  width: 110px;
+  height: 60px;
+  position: relative;
+}
+.budget-icons__item {
+  & img {
+    border-radius: 50%;
+    border: 3px solid white;
+    width: 60px;
+    height: 60px;
+  }
+  & span {
+    font-size: 40px;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 3px solid white;
+  }
+}
+.icons-item-you {
+  top: 0;
+  left: 50px;
+  z-index: 100;
+  position: absolute;
+}
+.budget-icons__item-sceleton {
+  width: 110px;
+  height: 60px;
+  position: relative;
+}
+.opponent__name {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 15px;
+  max-width: 300px;
+  min-width: 200px;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: $accountPageBg;
+  @include shadowEl();
+}
+.icons-sceleton__text {
+  margin-top: 20px;
+}

@@ -49,55 +49,55 @@
   0% {
     right: -3%;
     top: -3%;
-    height: 1%;
-    width: 0.5%;
+    height: 0.3%;
+    width: 0.3%;
   }
   12% {
     right: -3%;
     top: -3%;
     height: 100%;
-    width: 0.5%;
+    width: 0.3%;
   }
   24% {
     right: -3%;
     top: 99%;
-    height: 1%;
-    width: 0.5%;
+    height: 0.3%;
+    width: 0.3%;
   }
   36% {
-    right: -3%;
+    right: -2%;
     top: 99%;
-    height: 1%;
-    width: 101%;
+    height: 0.3%;
+    width: 99%;
   }
   48% {
     right: 100%;
     top: 106%;
-    height: 1%;
-    width: 0.5%;
+    height: 0.3%;
+    width: 0.3%;
   }
   60% {
-    right: 99%;
+    right: 100%;
     top: -5%;
     height: 100%;
-    width: 0.5%;
+    width: 0.3%;
   }
   72% {
     right: 99%;
     top: -1%;
-    height: 1%;
+    height: 0.3%;
     width: 0.5%;
   }
   84% {
     right: -1%;
     top: -1%;
-    height: 1%;
+    height: 0.3%;
     width: 100%;
   }
   100% {
     right: -1%;
     top: -1%;
-    height: 1%;
+    height: 0.3%;
     width: 0%;
   }
 }
@@ -152,25 +152,33 @@
     background-color: #87d1de;
   }
 }
-@media (max-height: 480px) {
-  .input-wrapper__input {
-    height: 35px;
-    font-size: 12px;
-    &::placeholder {
-      font-size: 13px;
-    }
+.input-wrapper-color-all:focus .input-wrapper-btn__stroke {
+  background-color: #00000046;
+  @include shadowActiveEl();
+}
+.input-wrapper-color-all:hover .input-wrapper-btn__stroke {
+  background-color: #00000046;
+  @include shadowActiveEl();
+}
+.input-color-all {
+  border-radius: 5px;
+  width: 103%;
+  border: 3px solid #ffffff81;
+  box-shadow: 0px 0px 4px 2px #ffffff42;
+  &:active {
+    background-color: #00000027;
+    box-shadow: 0px 0px 4px 2px #ffffff9b;
   }
-  .input-wrapper__btn {
-    top: 20%;
-  }
-  .input-wrapper {
-    height: 35px;
+
+  &:focus {
+    box-shadow: 0px 0px 4px 2px #ffffff9b;
+    background-color: #00000027;
   }
 }
 
 @media (max-height: 400px) {
   .input-wrapper__input {
-    height: 25px;
+    height: 35px;
     font-size: 12px;
     &::placeholder {
       font-size: 13px;
@@ -180,6 +188,6 @@
     top: 20%;
   }
   .input-wrapper {
-    height: 25px;
+    height: 35px;
   }
 }

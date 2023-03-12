@@ -1,19 +1,26 @@
-export interface IUser {
+export interface alertItem {
   id: string;
-  name: string;
-  email: string;
-  password: string;
-  avatar: string;
-  alert: object;
-  isSetComment: boolean;
+  userFrom: string;
+  userTo: string;
+  theme: string;
+  message: string;
+  _id: string;
 }
-export interface ISearchUser {
-  activationLink: string;
-  alert: Array<Object>;
+export interface IFromBackUser {
+  activationLink?: string;
+  alert: alertItem[];
   email: string;
-  isActivated: boolean;
+  avatar: string;
+  isActivated?: boolean;
+  isSetComment: boolean;
   name: string;
   password: string;
-  __v: number;
+  __v?: number;
   id: string;
+  budget: string | null | undefined;
+  chat: string | null | undefined;
+}
+
+export interface UserObject {
+  user: IFromBackUser;
 }

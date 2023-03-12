@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
-import { ISearchUser } from "../../../models/IUser";
+import { IFromBackUser } from "../../../models/IUser";
 import "./userCart.scss";
 interface Props {
-  user: ISearchUser;
+  user: IFromBackUser;
   handleClick: Function;
   isResetActive: boolean;
 }
